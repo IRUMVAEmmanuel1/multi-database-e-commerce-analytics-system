@@ -1,0 +1,41 @@
+{
+  "generation_metadata": {
+    "timestamp": "2025-06-01T13:30:27.101271",
+    "generator_version": "2.0",
+    "configuration": {
+      "NUM_USERS": 10000,
+      "NUM_PRODUCTS": 5000,
+      "NUM_CATEGORIES": 25,
+      "NUM_TRANSACTIONS": 50000,
+      "NUM_SESSIONS": 200000,
+      "TIMESPAN_DAYS": 90,
+      "CHUNK_SIZE": 10000
+    }
+  },
+  "data_volumes": {
+    "categories": 10,
+    "products": 5000,
+    "users": 10000,
+    "sessions": 200000,
+    "transactions": 50000,
+    "total_records": 265010
+  },
+  "business_metrics": {
+    "total_revenue": 52496062.43,
+    "average_transaction_value": 1049.92,
+    "conversion_rate": 25.0,
+    "active_products": 4604,
+    "active_users": 8499,
+    "average_product_rating": 3.01,
+    "total_inventory_value": 558573654.75
+  },
+  "data_quality": {
+    "products_with_reviews": 4992,
+    "users_with_preferences": 10000,
+    "transactions_with_discounts": 12487
+  },
+  "time_range": {
+    "start_date": "2025-03-03T13:30:10.789969",
+    "end_date": "2025-06-01T14:18:33.826741"
+  }
+}

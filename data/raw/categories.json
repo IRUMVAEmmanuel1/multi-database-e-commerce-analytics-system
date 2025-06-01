@@ -1,0 +1,442 @@
+[
+  {
+    "category_id": "cat_000",
+    "name": "Electronics",
+    "description": "Premium electronics products for modern lifestyle",
+    "is_active": true,
+    "created_date": "2024-01-21T14:58:54.670261",
+    "subcategories": [
+      {
+        "subcategory_id": "sub_000_00",
+        "name": "Smartphones",
+        "profit_margin": 0.158,
+        "commission_rate": 0.055,
+        "is_featured": true
+      },
+      {
+        "subcategory_id": "sub_000_01",
+        "name": "Laptops",
+        "profit_margin": 0.192,
+        "commission_rate": 0.039,
+        "is_featured": true
+      },
+      {
+        "subcategory_id": "sub_000_02",
+        "name": "Headphones",
+        "profit_margin": 0.327,
+        "commission_rate": 0.033,
+        "is_featured": true
+      },
+      {
+        "subcategory_id": "sub_000_03",
+        "name": "Cameras",
+        "profit_margin": 0.216,
+        "commission_rate": 0.075,
+        "is_featured": true
+      },
+      {
+        "subcategory_id": "sub_000_04",
+        "name": "Gaming",
+        "profit_margin": 0.318,
+        "commission_rate": 0.094,
+        "is_featured": false
+      }
+    ]
+  },
+  {
+    "category_id": "cat_001",
+    "name": "Clothing",
+    "description": "Premium clothing products for modern lifestyle",
+    "is_active": true,
+    "created_date": "2023-06-11T05:09:29.799722",
+    "subcategories": [
+      {
+        "subcategory_id": "sub_001_00",
+        "name": "Men's Wear",
+        "profit_margin": 0.327,
+        "commission_rate": 0.103,
+        "is_featured": true
+      },
+      {
+        "subcategory_id": "sub_001_01",
+        "name": "Women's Wear",
+        "profit_margin": 0.378,
+        "commission_rate": 0.044,
+        "is_featured": false
+      },
+      {
+        "subcategory_id": "sub_001_02",
+        "name": "Kids",
+        "profit_margin": 0.252,
+        "commission_rate": 0.044,
+        "is_featured": false
+      },
+      {
+        "subcategory_id": "sub_001_03",
+        "name": "Shoes",
+        "profit_margin": 0.181,
+        "commission_rate": 0.064,
+        "is_featured": false
+      },
+      {
+        "subcategory_id": "sub_001_04",
+        "name": "Accessories",
+        "profit_margin": 0.404,
+        "commission_rate": 0.084,
+        "is_featured": true
+      }
+    ]
+  },
+  {
+    "category_id": "cat_002",
+    "name": "Home & Garden",
+    "description": "Premium home & garden products for modern lifestyle",
+    "is_active": true,
+    "created_date": "2023-09-10T12:45:39.592034",
+    "subcategories": [
+      {
+        "subcategory_id": "sub_002_00",
+        "name": "Furniture",
+        "profit_margin": 0.311,
+        "commission_rate": 0.118,
+        "is_featured": false
+      },
+      {
+        "subcategory_id": "sub_002_01",
+        "name": "Kitchen",
+        "profit_margin": 0.174,
+        "commission_rate": 0.056,
+        "is_featured": false
+      },
+      {
+        "subcategory_id": "sub_002_02",
+        "name": "Decor",
+        "profit_margin": 0.323,
+        "commission_rate": 0.093,
+        "is_featured": true
+      },
+      {
+        "subcategory_id": "sub_002_03",
+        "name": "Tools",
+        "profit_margin": 0.348,
+        "commission_rate": 0.1,
+        "is_featured": true
+      },
+      {
+        "subcategory_id": "sub_002_04",
+        "name": "Lighting",
+        "profit_margin": 0.407,
+        "commission_rate": 0.108,
+        "is_featured": false
+      }
+    ]
+  },
+  {
+    "category_id": "cat_003",
+    "name": "Sports",
+    "description": "Premium sports products for modern lifestyle",
+    "is_active": true,
+    "created_date": "2023-08-22T14:31:54.336128",
+    "subcategories": [
+      {
+        "subcategory_id": "sub_003_00",
+        "name": "Fitness",
+        "profit_margin": 0.341,
+        "commission_rate": 0.063,
+        "is_featured": false
+      },
+      {
+        "subcategory_id": "sub_003_01",
+        "name": "Outdoor",
+        "profit_margin": 0.257,
+        "commission_rate": 0.09,
+        "is_featured": true
+      },
+      {
+        "subcategory_id": "sub_003_02",
+        "name": "Team Sports",
+        "profit_margin": 0.333,
+        "commission_rate": 0.045,
+        "is_featured": true
+      },
+      {
+        "subcategory_id": "sub_003_03",
+        "name": "Water Sports",
+        "profit_margin": 0.199,
+        "commission_rate": 0.064,
+        "is_featured": true
+      },
+      {
+        "subcategory_id": "sub_003_04",
+        "name": "Winter Sports",
+        "profit_margin": 0.355,
+        "commission_rate": 0.106,
+        "is_featured": true
+      }
+    ]
+  },
+  {
+    "category_id": "cat_004",
+    "name": "Books",
+    "description": "Premium books products for modern lifestyle",
+    "is_active": true,
+    "created_date": "2024-02-26T01:38:59.676973",
+    "subcategories": [
+      {
+        "subcategory_id": "sub_004_00",
+        "name": "Fiction",
+        "profit_margin": 0.16,
+        "commission_rate": 0.058,
+        "is_featured": false
+      },
+      {
+        "subcategory_id": "sub_004_01",
+        "name": "Non-Fiction",
+        "profit_margin": 0.17,
+        "commission_rate": 0.112,
+        "is_featured": false
+      },
+      {
+        "subcategory_id": "sub_004_02",
+        "name": "Educational",
+        "profit_margin": 0.214,
+        "commission_rate": 0.075,
+        "is_featured": false
+      },
+      {
+        "subcategory_id": "sub_004_03",
+        "name": "Children's",
+        "profit_margin": 0.193,
+        "commission_rate": 0.043,
+        "is_featured": false
+      },
+      {
+        "subcategory_id": "sub_004_04",
+        "name": "Comics",
+        "profit_margin": 0.374,
+        "commission_rate": 0.069,
+        "is_featured": false
+      }
+    ]
+  },
+  {
+    "category_id": "cat_005",
+    "name": "Health & Beauty",
+    "description": "Premium health & beauty products for modern lifestyle",
+    "is_active": true,
+    "created_date": "2024-02-04T05:42:19.075940",
+    "subcategories": [
+      {
+        "subcategory_id": "sub_005_00",
+        "name": "Skincare",
+        "profit_margin": 0.449,
+        "commission_rate": 0.042,
+        "is_featured": false
+      },
+      {
+        "subcategory_id": "sub_005_01",
+        "name": "Makeup",
+        "profit_margin": 0.177,
+        "commission_rate": 0.034,
+        "is_featured": true
+      },
+      {
+        "subcategory_id": "sub_005_02",
+        "name": "Supplements",
+        "profit_margin": 0.196,
+        "commission_rate": 0.044,
+        "is_featured": false
+      },
+      {
+        "subcategory_id": "sub_005_03",
+        "name": "Personal Care",
+        "profit_margin": 0.329,
+        "commission_rate": 0.065,
+        "is_featured": false
+      },
+      {
+        "subcategory_id": "sub_005_04",
+        "name": "Fragrances",
+        "profit_margin": 0.309,
+        "commission_rate": 0.117,
+        "is_featured": true
+      }
+    ]
+  },
+  {
+    "category_id": "cat_006",
+    "name": "Automotive",
+    "description": "Premium automotive products for modern lifestyle",
+    "is_active": true,
+    "created_date": "2024-04-22T22:33:07.082656",
+    "subcategories": [
+      {
+        "subcategory_id": "sub_006_00",
+        "name": "Parts",
+        "profit_margin": 0.184,
+        "commission_rate": 0.11,
+        "is_featured": false
+      },
+      {
+        "subcategory_id": "sub_006_01",
+        "name": "Accessories",
+        "profit_margin": 0.381,
+        "commission_rate": 0.061,
+        "is_featured": false
+      },
+      {
+        "subcategory_id": "sub_006_02",
+        "name": "Tools",
+        "profit_margin": 0.28,
+        "commission_rate": 0.071,
+        "is_featured": false
+      },
+      {
+        "subcategory_id": "sub_006_03",
+        "name": "Care Products",
+        "profit_margin": 0.442,
+        "commission_rate": 0.099,
+        "is_featured": true
+      },
+      {
+        "subcategory_id": "sub_006_04",
+        "name": "Electronics",
+        "profit_margin": 0.411,
+        "commission_rate": 0.057,
+        "is_featured": true
+      }
+    ]
+  },
+  {
+    "category_id": "cat_007",
+    "name": "Toys & Games",
+    "description": "Premium toys & games products for modern lifestyle",
+    "is_active": true,
+    "created_date": "2023-07-03T20:00:17.789435",
+    "subcategories": [
+      {
+        "subcategory_id": "sub_007_00",
+        "name": "Educational",
+        "profit_margin": 0.379,
+        "commission_rate": 0.079,
+        "is_featured": true
+      },
+      {
+        "subcategory_id": "sub_007_01",
+        "name": "Action Figures",
+        "profit_margin": 0.33,
+        "commission_rate": 0.074,
+        "is_featured": true
+      },
+      {
+        "subcategory_id": "sub_007_02",
+        "name": "Board Games",
+        "profit_margin": 0.429,
+        "commission_rate": 0.109,
+        "is_featured": false
+      },
+      {
+        "subcategory_id": "sub_007_03",
+        "name": "Puzzles",
+        "profit_margin": 0.222,
+        "commission_rate": 0.052,
+        "is_featured": true
+      },
+      {
+        "subcategory_id": "sub_007_04",
+        "name": "Outdoor",
+        "profit_margin": 0.176,
+        "commission_rate": 0.074,
+        "is_featured": true
+      }
+    ]
+  },
+  {
+    "category_id": "cat_008",
+    "name": "Jewelry",
+    "description": "Premium jewelry products for modern lifestyle",
+    "is_active": false,
+    "created_date": "2023-11-03T04:23:07.476448",
+    "subcategories": [
+      {
+        "subcategory_id": "sub_008_00",
+        "name": "Rings",
+        "profit_margin": 0.31,
+        "commission_rate": 0.041,
+        "is_featured": false
+      },
+      {
+        "subcategory_id": "sub_008_01",
+        "name": "Necklaces",
+        "profit_margin": 0.434,
+        "commission_rate": 0.045,
+        "is_featured": false
+      },
+      {
+        "subcategory_id": "sub_008_02",
+        "name": "Earrings",
+        "profit_margin": 0.439,
+        "commission_rate": 0.114,
+        "is_featured": true
+      },
+      {
+        "subcategory_id": "sub_008_03",
+        "name": "Watches",
+        "profit_margin": 0.364,
+        "commission_rate": 0.066,
+        "is_featured": false
+      },
+      {
+        "subcategory_id": "sub_008_04",
+        "name": "Bracelets",
+        "profit_margin": 0.281,
+        "commission_rate": 0.077,
+        "is_featured": true
+      }
+    ]
+  },
+  {
+    "category_id": "cat_009",
+    "name": "Food & Beverages",
+    "description": "Premium food & beverages products for modern lifestyle",
+    "is_active": true,
+    "created_date": "2023-06-12T23:06:54.987341",
+    "subcategories": [
+      {
+        "subcategory_id": "sub_009_00",
+        "name": "Snacks",
+        "profit_margin": 0.169,
+        "commission_rate": 0.032,
+        "is_featured": true
+      },
+      {
+        "subcategory_id": "sub_009_01",
+        "name": "Beverages",
+        "profit_margin": 0.327,
+        "commission_rate": 0.031,
+        "is_featured": true
+      },
+      {
+        "subcategory_id": "sub_009_02",
+        "name": "Organic",
+        "profit_margin": 0.219,
+        "commission_rate": 0.111,
+        "is_featured": false
+      },
+      {
+        "subcategory_id": "sub_009_03",
+        "name": "International",
+        "profit_margin": 0.171,
+        "commission_rate": 0.051,
+        "is_featured": false
+      },
+      {
+        "subcategory_id": "sub_009_04",
+        "name": "Gourmet",
+        "profit_margin": 0.214,
+        "commission_rate": 0.042,
+        "is_featured": false
+      }
+    ]
+  }
+]
