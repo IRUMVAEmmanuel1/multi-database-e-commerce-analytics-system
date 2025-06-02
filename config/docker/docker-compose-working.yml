@@ -1,0 +1,163 @@
+# config/docker/docker-compose-working.yml
+# Verified working HBase setup using tested images
+
+networks:
+  hbase:
+    driver: bridge
+
+volumes:
+  hbase_data:
+  zookeeper_data:
+  hadoop_namenode:
+  hadoop_datanode:
+
+services:
+  # Zookeeper - Coordination Service
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.4.0
+    hostname: zookeeper
+    container_name: ecommerce_zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+      ZOOKEEPER_SYNC_LIMIT: 2
+    volumes:
+      - zookeeper_data:/var/lib/zookeeper/data
+    networks:
+      - hbase
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "2181"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Hadoop NameNode
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: ecommerce_namenode
+    hostname: namenode
+    ports:
+      - "9870:9870"
+      - "9000:9000"
+    volumes:
+      - hadoop_namenode:/hadoop/dfs/name
+    environment:
+      - CLUSTER_NAME=ecommerce
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+    env_file:
+      - ./hadoop.env
+    networks:
+      - hbase
+    restart: unless-stopped
+    depends_on:
+      zookeeper:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9870/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Hadoop DataNode
+  datanode:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: ecommerce_datanode
+    hostname: datanode
+    volumes:
+      - hadoop_datanode:/hadoop/dfs/data
+    environment:
+      SERVICE_PRECONDITION: "namenode:9870"
+      CORE_CONF_fs_defaultFS: hdfs://namenode:9000
+    env_file:
+      - ./hadoop.env
+    networks:
+      - hbase
+    restart: unless-stopped
+    depends_on:
+      namenode:
+        condition: service_healthy
+
+  # HBase Master using a working image
+  hbase-master:
+    image: dajobe/hbase:latest
+    container_name: ecommerce_hbase_master
+    hostname: hbase-master
+    ports:
+      - "16010:16010"  # HBase Master Web UI
+      - "16000:16000"  # HBase Master
+    environment:
+      HBASE_CONF_hbase_rootdir: hdfs://namenode:9000/hbase
+      HBASE_CONF_hbase_zookeeper_quorum: zookeeper:2181
+      HBASE_CONF_hbase_master: hbase-master:16000
+      HBASE_CONF_hbase_master_hostname: hbase-master
+      HBASE_CONF_hbase_master_port: 16000
+      HBASE_CONF_hbase_master_info_port: 16010
+      HBASE_CONF_hbase_cluster_distributed: "true"
+    volumes:
+      - hbase_data:/hbase-data
+    networks:
+      - hbase
+    restart: unless-stopped
+    depends_on:
+      namenode:
+        condition: service_healthy
+      zookeeper:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "echo 'status' | hbase shell -n || exit 1"]
+      interval: 60s
+      timeout: 30s
+      retries: 5
+      start_period: 120s
+
+  # HBase RegionServer
+  hbase-regionserver:
+    image: dajobe/hbase:latest
+    container_name: ecommerce_hbase_regionserver
+    hostname: hbase-regionserver
+    ports:
+      - "16030:16030"  # RegionServer Info
+      - "16020:16020"  # RegionServer
+    environment:
+      HBASE_CONF_hbase_rootdir: hdfs://namenode:9000/hbase
+      HBASE_CONF_hbase_zookeeper_quorum: zookeeper:2181
+      HBASE_CONF_hbase_master: hbase-master:16000
+      HBASE_CONF_hbase_regionserver_hostname: hbase-regionserver
+      HBASE_CONF_hbase_regionserver_port: 16020
+      HBASE_CONF_hbase_regionserver_info_port: 16030
+      HBASE_CONF_hbase_cluster_distributed: "true"
+    command: ["start-hbase.sh", "regionserver"]
+    networks:
+      - hbase
+    restart: unless-stopped
+    depends_on:
+      hbase-master:
+        condition: service_healthy
+
+  # HBase Thrift Server for Python connectivity
+  hbase-thrift:
+    image: dajobe/hbase:latest
+    container_name: ecommerce_hbase_thrift
+    hostname: hbase-thrift
+    ports:
+      - "9090:9090"   # Thrift port
+      - "9095:9095"   # Thrift info port
+    environment:
+      HBASE_CONF_hbase_rootdir: hdfs://namenode:9000/hbase
+      HBASE_CONF_hbase_zookeeper_quorum: zookeeper:2181
+      HBASE_CONF_hbase_master: hbase-master:16000
+    command: ["hbase", "thrift", "start", "-p", "9090", "--infoport", "9095"]
+    networks:
+      - hbase
+    restart: unless-stopped
+    depends_on:
+      hbase-master:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "9090"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

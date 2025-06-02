@@ -1,0 +1,221 @@
+# config/docker/docker-compose.yml
+# HBase Cluster Setup for E-commerce Analytics
+# Optimized for time-series data and high-volume analytics
+
+networks:
+  hbase-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  namenode_data:
+    driver: local
+  datanode_data:
+    driver: local
+  hbase_data:
+    driver: local
+  zookeeper_data:
+    driver: local
+  zookeeper_logs:
+    driver: local
+
+services:
+  # Zookeeper - Coordination service
+  zookeeper:
+    image: zookeeper:3.8
+    container_name: ecommerce_zookeeper
+    hostname: zookeeper
+    restart: unless-stopped
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_SERVERS: server.1=zookeeper:2888:3888;2181
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+      ZOOKEEPER_INIT_LIMIT: 10
+      ZOOKEEPER_SYNC_LIMIT: 5
+      ZOOKEEPER_MAX_CLIENT_CNXNS: 60
+    ports:
+      - "2181:2181"
+    volumes:
+      - zookeeper_data:/data
+      - zookeeper_logs:/datalog
+    networks:
+      hbase-network:
+        ipv4_address: 172.20.0.10
+    healthcheck:
+      test: ["CMD", "zkServer.sh", "status"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  # Hadoop NameNode - HDFS coordination
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: ecommerce_namenode
+    hostname: namenode
+    restart: unless-stopped
+    environment:
+      - CLUSTER_NAME=ecommerce-cluster
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+      - CORE_CONF_hadoop_http_staticuser_user=root
+      - CORE_CONF_hadoop_proxyuser_hue_hosts=*
+      - CORE_CONF_hadoop_proxyuser_hue_groups=*
+      - CORE_CONF_io_compression_codecs=org.apache.hadoop.io.compress.SnappyCodec
+      - HDFS_CONF_dfs_webhdfs_enabled=true
+      - HDFS_CONF_dfs_permissions_enabled=false
+      - HDFS_CONF_dfs_nameservices=cluster1
+      - HDFS_CONF_dfs_replication=1
+    ports:
+      - "9870:9870"  # NameNode Web UI
+      - "9000:9000"  # HDFS
+    volumes:
+      - namenode_data:/hadoop/dfs/name
+    networks:
+      hbase-network:
+        ipv4_address: 172.20.0.20
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9870"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  # Hadoop DataNode - HDFS storage
+  datanode:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: ecommerce_datanode
+    hostname: datanode
+    restart: unless-stopped
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+      - CORE_CONF_hadoop_http_staticuser_user=root
+      - CORE_CONF_hadoop_proxyuser_hue_hosts=*
+      - CORE_CONF_hadoop_proxyuser_hue_groups=*
+      - CORE_CONF_io_compression_codecs=org.apache.hadoop.io.compress.SnappyCodec
+      - HDFS_CONF_dfs_webhdfs_enabled=true
+      - HDFS_CONF_dfs_permissions_enabled=false
+      - HDFS_CONF_dfs_replication=1
+    volumes:
+      - datanode_data:/hadoop/dfs/data
+    networks:
+      hbase-network:
+        ipv4_address: 172.20.0.21
+    depends_on:
+      namenode:
+        condition: service_healthy
+
+  # HBase Master - HBase coordination and management
+  hbase-master:
+    image: apache/hbase:2.4.17
+    container_name: ecommerce_hbase_master
+    hostname: hbase-master
+    restart: unless-stopped
+    environment:
+      HBASE_CONF_hbase_rootdir: hdfs://namenode:9000/hbase
+      HBASE_CONF_hbase_zookeeper_quorum: zookeeper:2181
+      HBASE_CONF_hbase_master: hbase-master:16000
+      HBASE_CONF_hbase_master_hostname: hbase-master
+      HBASE_CONF_hbase_master_port: 16000
+      HBASE_CONF_hbase_master_info_port: 16010
+      HBASE_CONF_hbase_regionserver_port: 16020
+      HBASE_CONF_hbase_regionserver_info_port: 16030
+      HBASE_CONF_hbase_cluster_distributed: "true"
+      HBASE_CONF_hbase_regionserver_handler_count: 30
+      HBASE_CONF_hbase_hregion_max_filesize: 10737418240
+      HBASE_CONF_hbase_hregion_memstore_flush_size: 134217728
+    ports:
+      - "16010:16010"  # HBase Master Web UI
+      - "16000:16000"  # HBase Master
+    volumes:
+      - hbase_data:/hbase-data
+    networks:
+      hbase-network:
+        ipv4_address: 172.20.0.30
+    depends_on:
+      zookeeper:
+        condition: service_healthy
+      namenode:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "hbase shell -n -e 'status'"]
+      interval: 30s
+      timeout: 30s
+      retries: 10
+      start_period: 120s
+
+  # HBase RegionServer - Data storage and processing
+  hbase-regionserver:
+    image: apache/hbase:2.4.17
+    container_name: ecommerce_hbase_regionserver
+    hostname: hbase-regionserver
+    restart: unless-stopped
+    command: ["hbase", "regionserver", "start"]
+    environment:
+      HBASE_CONF_hbase_rootdir: hdfs://namenode:9000/hbase
+      HBASE_CONF_hbase_zookeeper_quorum: zookeeper:2181
+      HBASE_CONF_hbase_master: hbase-master:16000
+      HBASE_CONF_hbase_regionserver_hostname: hbase-regionserver
+      HBASE_CONF_hbase_regionserver_port: 16020
+      HBASE_CONF_hbase_regionserver_info_port: 16030
+      HBASE_CONF_hbase_cluster_distributed: "true"
+      HBASE_CONF_hbase_regionserver_handler_count: 30
+    ports:
+      - "16030:16030"  # RegionServer Web UI
+      - "16020:16020"  # RegionServer
+    networks:
+      hbase-network:
+        ipv4_address: 172.20.0.31
+    depends_on:
+      hbase-master:
+        condition: service_healthy
+
+  # HBase Thrift Server - API access for Python clients
+  hbase-thrift:
+    image: apache/hbase:2.4.17
+    container_name: ecommerce_hbase_thrift
+    hostname: hbase-thrift
+    restart: unless-stopped
+    command: ["hbase", "thrift", "start", "-p", "9090", "--infoport", "9095"]
+    environment:
+      HBASE_CONF_hbase_rootdir: hdfs://namenode:9000/hbase
+      HBASE_CONF_hbase_zookeeper_quorum: zookeeper:2181
+      HBASE_CONF_hbase_master: hbase-master:16000
+    ports:
+      - "9090:9090"   # Thrift API
+      - "9095:9095"   # Thrift Web UI
+    networks:
+      hbase-network:
+        ipv4_address: 172.20.0.40
+    depends_on:
+      hbase-master:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9095 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  # HBase REST Server - REST API access
+  hbase-rest:
+    image: apache/hbase:2.4.17
+    container_name: ecommerce_hbase_rest
+    hostname: hbase-rest
+    restart: unless-stopped
+    command: ["hbase", "rest", "start", "-p", "8080", "--infoport", "8085"]
+    environment:
+      HBASE_CONF_hbase_rootdir: hdfs://namenode:9000/hbase
+      HBASE_CONF_hbase_zookeeper_quorum: zookeeper:2181
+      HBASE_CONF_hbase_master: hbase-master:16000
+    ports:
+      - "8080:8080"   # REST API
+      - "8085:8085"   # REST Web UI
+    networks:
+      hbase-network:
+        ipv4_address: 172.20.0.41
+    depends_on:
+      hbase-master:
+        condition: service_healthy
