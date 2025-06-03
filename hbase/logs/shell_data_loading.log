@@ -1,29 +1,42 @@
-2025-06-02 01:19:35,352 - INFO - HBase Shell Loader initialized
-2025-06-02 01:19:35,353 - INFO - 🚀 Starting HBase shell data loading process...
-2025-06-02 01:19:41,988 - INFO - ✅ HBase shell connection successful
-2025-06-02 01:19:41,989 - INFO - 🚀 Starting complete session data loading into HBase...
-2025-06-02 01:19:41,989 - INFO - 📁 Found 20 session files to load
-2025-06-02 01:19:41,989 - INFO - 📊 This will load ALL ~200,000 sessions - please be patient!
-2025-06-02 01:19:41,989 - INFO - 📊 Loading sessions_000.json (1/20)...
-2025-06-02 01:19:42,080 - INFO - 📋 Processing 10,000 sessions from sessions_000.json
-2025-06-02 02:40:59,019 - WARNING - ⚠️  Batch execution had issues: 2025-06-02 00:10:29,015 WARN  [main] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-
-2025-06-02 03:25:21,788 - WARNING - ⚠️  Batch execution had issues: 
-2025-06-02 03:42:09,668 - WARNING - ⚠️  Batch execution had issues: 2025-06-02 01:41:43,732 WARN  [main] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-
-2025-06-02 03:49:11,233 - INFO -   ✅ Processed 1,000/10,000 sessions from sessions_000.json
-2025-06-02 05:49:27,161 - INFO -   ✅ Processed 2,000/10,000 sessions from sessions_000.json
-2025-06-02 06:27:52,620 - WARNING - ⚠️  Batch execution had issues: 
-2025-06-02 06:46:08,828 - WARNING - ⚠️  Batch execution had issues: 
-2025-06-02 07:50:30,624 - WARNING - ⚠️  Batch execution had issues: 
-2025-06-02 08:07:56,328 - INFO -   ✅ Processed 3,000/10,000 sessions from sessions_000.json
-2025-06-02 08:34:44,690 - INFO -   ✅ Processed 4,000/10,000 sessions from sessions_000.json
-2025-06-02 09:03:04,503 - INFO -   ✅ Processed 5,000/10,000 sessions from sessions_000.json
-2025-06-02 09:08:51,214 - WARNING - ⚠️  Batch execution had issues: 2025-06-02 07:08:10,699 WARN  [main] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-
-2025-06-02 09:37:42,355 - WARNING - ⚠️  Batch execution had issues: 2025-06-02 07:37:02,021 WARN  [main] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-
-2025-06-02 09:59:31,819 - INFO -   ✅ Processed 6,000/10,000 sessions from sessions_000.json
-2025-06-02 10:37:47,260 - INFO -   ✅ Processed 7,000/10,000 sessions from sessions_000.json
-2025-06-02 11:12:00,338 - INFO -   ✅ Processed 8,000/10,000 sessions from sessions_000.json
-2025-06-02 11:18:58,446 - WARNING - ⚠️  Batch execution had issues: 
+2025-06-02 20:15:15,444 - INFO - HBase Shell Loader initialized
+2025-06-02 20:15:15,444 - INFO - 🚀 Starting HBase shell data loading process...
+2025-06-02 20:15:29,260 - INFO - ✅ HBase shell working (tables accessible)
+2025-06-02 20:15:29,264 - INFO - 🚀 Starting complete session data loading into HBase...
+2025-06-02 20:15:29,264 - INFO - 📁 Found 20 session files to load
+2025-06-02 20:15:29,265 - INFO - 📊 This will load ALL ~200,000 sessions - please be patient!
+2025-06-02 20:15:29,265 - INFO - 📊 Loading sessions_000.json (1/20)...
+2025-06-02 20:15:29,427 - INFO - 📋 Processing 10,000 sessions from sessions_000.json
+2025-06-02 20:52:54,202 - INFO -   ✅ Processed 1,000/10,000 sessions from sessions_000.json
+2025-06-02 21:28:04,654 - INFO -   ✅ Processed 2,000/10,000 sessions from sessions_000.json
+2025-06-02 21:59:09,426 - INFO -   ✅ Processed 3,000/10,000 sessions from sessions_000.json
+2025-06-02 22:25:41,041 - INFO -   ✅ Processed 4,000/10,000 sessions from sessions_000.json
+2025-06-02 22:52:14,447 - INFO -   ✅ Processed 5,000/10,000 sessions from sessions_000.json
+2025-06-02 23:18:37,290 - INFO -   ✅ Processed 6,000/10,000 sessions from sessions_000.json
+2025-06-02 23:45:11,077 - INFO -   ✅ Processed 7,000/10,000 sessions from sessions_000.json
+2025-06-03 00:11:39,205 - INFO -   ✅ Processed 8,000/10,000 sessions from sessions_000.json
+2025-06-03 00:38:09,564 - INFO -   ✅ Processed 9,000/10,000 sessions from sessions_000.json
+2025-06-03 01:04:29,230 - INFO -   ✅ Processed 10,000/10,000 sessions from sessions_000.json
+2025-06-03 01:04:29,236 - INFO - ✅ Completed loading 10,000 sessions from sessions_000.json
+2025-06-03 01:04:29,237 - INFO - 📊 Loading sessions_001.json (2/20)...
+2025-06-03 01:04:29,386 - INFO - 📋 Processing 10,000 sessions from sessions_001.json
+2025-06-03 01:30:48,672 - INFO -   ✅ Processed 1,000/10,000 sessions from sessions_001.json
+2025-06-03 01:57:05,577 - INFO -   ✅ Processed 2,000/10,000 sessions from sessions_001.json
+2025-06-03 02:23:31,828 - INFO -   ✅ Processed 3,000/10,000 sessions from sessions_001.json
+2025-06-03 02:49:43,033 - INFO -   ✅ Processed 4,000/10,000 sessions from sessions_001.json
+2025-06-03 03:16:03,378 - INFO -   ✅ Processed 5,000/10,000 sessions from sessions_001.json
+2025-06-03 03:42:25,077 - INFO -   ✅ Processed 6,000/10,000 sessions from sessions_001.json
+2025-06-03 04:08:44,170 - INFO -   ✅ Processed 7,000/10,000 sessions from sessions_001.json
+2025-06-03 04:35:05,488 - INFO -   ✅ Processed 8,000/10,000 sessions from sessions_001.json
+2025-06-03 05:01:25,564 - INFO -   ✅ Processed 9,000/10,000 sessions from sessions_001.json
+2025-06-03 05:27:41,318 - INFO -   ✅ Processed 10,000/10,000 sessions from sessions_001.json
+2025-06-03 05:27:41,325 - INFO - ✅ Completed loading 10,000 sessions from sessions_001.json
+2025-06-03 05:27:41,325 - INFO - 📊 Loading sessions_002.json (3/20)...
+2025-06-03 05:27:41,443 - INFO - 📋 Processing 10,000 sessions from sessions_002.json
+2025-06-03 05:53:59,541 - INFO -   ✅ Processed 1,000/10,000 sessions from sessions_002.json
+2025-06-03 06:20:23,414 - INFO -   ✅ Processed 2,000/10,000 sessions from sessions_002.json
+2025-06-03 06:46:48,230 - INFO -   ✅ Processed 3,000/10,000 sessions from sessions_002.json
+2025-06-03 07:13:02,052 - INFO -   ✅ Processed 4,000/10,000 sessions from sessions_002.json
+2025-06-03 07:39:22,194 - INFO -   ✅ Processed 5,000/10,000 sessions from sessions_002.json
+2025-06-03 08:05:45,325 - INFO -   ✅ Processed 6,000/10,000 sessions from sessions_002.json
+2025-06-03 08:32:09,029 - INFO -   ✅ Processed 7,000/10,000 sessions from sessions_002.json
+2025-06-03 09:01:55,097 - INFO -   ✅ Processed 8,000/10,000 sessions from sessions_002.json

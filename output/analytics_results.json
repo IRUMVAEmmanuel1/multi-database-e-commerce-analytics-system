@@ -1,0 +1,112 @@
+{
+  "customer_segments": [
+    {
+      "segment": "High Value",
+      "customer_count": 7232,
+      "avg_frequency": 4.471653761061947,
+      "avg_monetary": 4907.732876106185,
+      "avg_age": 39.00622234513274
+    },
+    {
+      "segment": "Medium Value",
+      "customer_count": 545,
+      "avg_frequency": 2.302752293577982,
+      "avg_monetary": 758.6508807339446,
+      "avg_age": 39.14678899082569
+    },
+    {
+      "segment": "Low Value",
+      "customer_count": 345,
+      "avg_frequency": 1.6898550724637682,
+      "avg_monetary": 296.720956521739,
+      "avg_age": 40.36521739130435
+    },
+    {
+      "segment": "New Customer",
+      "customer_count": 70,
+      "avg_frequency": 1.042857142857143,
+      "avg_monetary": 54.95471428571426,
+      "avg_age": 39.142857142857146
+    }
+  ],
+  "top_categories": [
+    {
+      "category_id": "cat_003",
+      "product_count": 533,
+      "avg_price": 214.30397748592873,
+      "avg_rating": 3.002063789868668
+    },
+    {
+      "category_id": "cat_002",
+      "product_count": 523,
+      "avg_price": 345.11418738049707,
+      "avg_rating": 3.0590822179732315
+    },
+    {
+      "category_id": "cat_000",
+      "product_count": 507,
+      "avg_price": 857.8685601577907,
+      "avg_rating": 2.9982248520710058
+    },
+    {
+      "category_id": "cat_006",
+      "product_count": 504,
+      "avg_price": 178.2383531746032,
+      "avg_rating": 2.971428571428571
+    },
+    {
+      "category_id": "cat_004",
+      "product_count": 498,
+      "avg_price": 23.392831325301206,
+      "avg_rating": 2.9837349397590365
+    },
+    {
+      "category_id": "cat_009",
+      "product_count": 493,
+      "avg_price": 35.65985801217039,
+      "avg_rating": 3.0397565922920893
+    },
+    {
+      "category_id": "cat_008",
+      "product_count": 492,
+      "avg_price": 422.47766260162604,
+      "avg_rating": 3.0321138211382115
+    },
+    {
+      "category_id": "cat_007",
+      "product_count": 491,
+      "avg_price": 87.63014256619145,
+      "avg_rating": 2.991446028513238
+    },
+    {
+      "category_id": "cat_001",
+      "product_count": 483,
+      "avg_price": 138.15691511387163,
+      "avg_rating": 3.0339544513457564
+    },
+    {
+      "category_id": "cat_005",
+      "product_count": 475,
+      "avg_price": 65.2594947368421,
+      "avg_rating": 2.981473684210526
+    }
+  ],
+  "business_insights": {
+    "total_revenue": 36655525.92999997,
+    "total_customers": 8342,
+    "total_sessions": 10000,
+    "conversion_rate": 3.0300000000000002,
+    "avg_order_value": 1050.0909826109369,
+    "total_products": 4999,
+    "active_products": 4603
+  },
+  "metadata": {
+    "generated_at": "2025-06-03T10:03:11.230194",
+    "analysis_type": "multi_database_analytics",
+    "databases_used": [
+      "MongoDB",
+      "HBase",
+      "Spark"
+    ]
+  }
+}
