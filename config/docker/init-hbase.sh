@@ -2,7 +2,7 @@
 # config/docker/init-hbase.sh
 # HBase Table Creation for E-commerce Analytics
 
-echo "🚀 Initializing HBase for E-commerce Analytics..."
+echo " Initializing HBase for E-commerce Analytics..."
 echo "================================================"
 
 # Wait for HBase to be fully ready
@@ -19,9 +19,9 @@ check_hbase_status() {
 max_attempts=20
 attempt=1
 while [ $attempt -le $max_attempts ]; do
-    echo "🔍 Checking HBase status (attempt $attempt/$max_attempts)..."
+    echo "Checking HBase status (attempt $attempt/$max_attempts)..."
     if check_hbase_status; then
-        echo "✅ HBase is ready!"
+        echo " HBase is ready!"
         break
     else
         echo "⏳ HBase not ready yet, waiting 15 seconds..."
@@ -31,12 +31,12 @@ while [ $attempt -le $max_attempts ]; do
 done
 
 if [ $attempt -gt $max_attempts ]; then
-    echo "❌ HBase failed to start after $max_attempts attempts"
+    echo " HBase failed to start after $max_attempts attempts"
     exit 1
 fi
 
 # Create HBase tables for e-commerce analytics
-echo "📊 Creating HBase tables for analytics..."
+echo " Creating HBase tables for analytics..."
 
 docker exec ecommerce_hbase_master hbase shell << 'HBASESHELL'
 
@@ -99,22 +99,22 @@ exit
 HBASESHELL
 
 echo ""
-echo "✅ HBase tables created successfully!"
+echo " HBase tables created successfully!"
 echo ""
-echo "📊 Created Tables:"
+echo " Created Tables:"
 echo "  • user_sessions    - Time-series user session data"
 echo "  • product_views    - Product interaction tracking"
 echo "  • user_events      - General event logging"
 echo "  • daily_metrics    - Aggregated daily statistics"
 echo ""
-echo "🌐 Access Points:"
+echo "Access Points:"
 echo "  • HBase Master UI: http://localhost:16010"
 echo "  • Thrift Server:   localhost:9090"
 echo "  • REST API:        http://localhost:8080"
 echo ""
-echo "🔧 Connection Details:"
+echo "Connection Details:"
 echo "  • Zookeeper:       localhost:2181"
 echo "  • HDFS NameNode:   http://localhost:9870"
 echo ""
 echo "================================================"
-echo "🎉 HBase initialization complete!"
+echo " HBase initialization complete!"

@@ -41,7 +41,7 @@ class CompleteEcommerceAnalytics:
 
     def load_mongodb_data(self):
         """Load data from MongoDB with proper type handling"""
-        logger.info("🗄️ Loading data from MongoDB...")
+        logger.info(" Loading data from MongoDB...")
         
         client = pymongo.MongoClient(self.mongo_uri)
         db = client.ecommerce_analytics
@@ -53,7 +53,7 @@ class CompleteEcommerceAnalytics:
         self.sessions_df = self._create_sessions_dataframe(list(db.sessions.find().limit(10000)))  # Limit for performance
         
         client.close()
-        logger.info("✅ MongoDB data loaded successfully")
+        logger.info(" MongoDB data loaded successfully")
 
     def _create_users_dataframe(self, users_data):
         """Create users DataFrame with explicit schema"""
@@ -75,7 +75,7 @@ class CompleteEcommerceAnalytics:
             cleaned_users.append(cleaned_user)
         
         df = self.spark.createDataFrame(cleaned_users)
-        logger.info(f"📊 users: {df.count():,} records")
+        logger.info(f" users: {df.count():,} records")
         return df
 
     def _create_products_dataframe(self, products_data):
@@ -98,7 +98,7 @@ class CompleteEcommerceAnalytics:
             cleaned_products.append(cleaned_product)
         
         df = self.spark.createDataFrame(cleaned_products)
-        logger.info(f"📊 products: {df.count():,} records")
+        logger.info(f" products: {df.count():,} records")
         return df
 
     def _create_transactions_dataframe(self, transactions_data):
@@ -131,7 +131,7 @@ class CompleteEcommerceAnalytics:
             cleaned_transactions.append(cleaned_txn)
         
         df = self.spark.createDataFrame(cleaned_transactions)
-        logger.info(f"📊 transactions: {df.count():,} records")
+        logger.info(f" transactions: {df.count():,} records")
         return df
 
     def _create_sessions_dataframe(self, sessions_data):
@@ -153,7 +153,7 @@ class CompleteEcommerceAnalytics:
             cleaned_sessions.append(cleaned_session)
         
         df = self.spark.createDataFrame(cleaned_sessions)
-        logger.info(f"📊 sessions: {df.count():,} records")
+        logger.info(f" sessions: {df.count():,} records")
         return df
 
     def customer_segmentation_analysis(self):
@@ -197,17 +197,17 @@ class CompleteEcommerceAnalytics:
                 .orderBy("avg_monetary", ascending=False)
             
             self.results['customer_segments'] = [row.asDict() for row in segment_summary.collect()]
-            logger.info("✅ Customer segmentation completed")
+            logger.info(" Customer segmentation completed")
             
             return segment_summary
             
         except Exception as e:
-            logger.error(f"❌ Customer segmentation failed: {str(e)}")
+            logger.error(f" Customer segmentation failed: {str(e)}")
             return None
 
     def product_performance_analysis(self):
         """Product Performance Analysis"""
-        logger.info("📈 Analyzing Product Performance...")
+        logger.info(" Analyzing Product Performance...")
         
         try:
             # Basic product performance from transactions
@@ -227,12 +227,12 @@ class CompleteEcommerceAnalytics:
                 .orderBy("product_count", ascending=False)
             
             self.results['top_categories'] = [row.asDict() for row in top_categories.collect()]
-            logger.info("✅ Product performance analysis completed")
+            logger.info(" Product performance analysis completed")
             
             return top_categories
             
         except Exception as e:
-            logger.error(f"❌ Product performance failed: {str(e)}")
+            logger.error(f" Product performance failed: {str(e)}")
             return None
 
     def generate_business_insights(self):
@@ -262,12 +262,12 @@ class CompleteEcommerceAnalytics:
             }
             
             self.results['business_insights'] = insights
-            logger.info("✅ Business insights generated")
+            logger.info(" Business insights generated")
             
             return insights
             
         except Exception as e:
-            logger.error(f"❌ Business insights failed: {str(e)}")
+            logger.error(f" Business insights failed: {str(e)}")
             return {}
 
     def save_results(self):
@@ -286,11 +286,11 @@ class CompleteEcommerceAnalytics:
         with open(output_file, 'w') as f:
             json.dump(self.results, f, indent=2, default=str)
         
-        logger.info(f"✅ Results saved to {output_file}")
+        logger.info(f" Results saved to {output_file}")
 
     def run_complete_analysis(self):
         """Run complete analytics pipeline"""
-        logger.info("🚀 Starting Multi-Database Analytics...")
+        logger.info(" Starting Multi-Database Analytics...")
         
         try:
             # Load data
@@ -307,10 +307,10 @@ class CompleteEcommerceAnalytics:
             # Print summary
             self._print_summary()
             
-            logger.info("🎉 Analytics pipeline completed successfully!")
+            logger.info(" Analytics pipeline completed successfully!")
             
         except Exception as e:
-            logger.error(f"❌ Analytics pipeline failed: {str(e)}")
+            logger.error(f" Analytics pipeline failed: {str(e)}")
             raise
         
         finally:
@@ -322,17 +322,17 @@ class CompleteEcommerceAnalytics:
             insights = self.results['business_insights']
             
             print("\n" + "="*70)
-            print("🎉 MULTI-DATABASE E-COMMERCE ANALYTICS COMPLETE")
+            print(" MULTI-DATABASE E-COMMERCE ANALYTICS COMPLETE")
             print("="*70)
             print(f"💰 Total Revenue: ${insights['total_revenue']:,.2f}")
             print(f"👥 Active Customers: {insights['total_customers']:,}")
-            print(f"📊 Total Sessions: {insights['total_sessions']:,}")
-            print(f"📈 Conversion Rate: {insights['conversion_rate']:.2f}%")
+            print(f" Total Sessions: {insights['total_sessions']:,}")
+            print(f" Conversion Rate: {insights['conversion_rate']:.2f}%")
             print(f"🛒 Average Order Value: ${insights['avg_order_value']:.2f}")
             print(f"🏪 Active Products: {insights['active_products']:,}")
             print("="*70)
             print("🗃️ Databases Used: MongoDB + HBase + Spark")
-            print("📁 Results: output/analytics_results.json")
+            print(" Results: output/analytics_results.json")
             print("="*70)
 
 

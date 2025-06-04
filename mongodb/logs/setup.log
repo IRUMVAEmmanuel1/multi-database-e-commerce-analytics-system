@@ -1,65 +1,65 @@
 2025-06-01 13:55:58,590 - INFO - MongoDB Setup initialized
-2025-06-01 13:55:58,590 - INFO - 🚀 Starting complete MongoDB setup...
-2025-06-01 13:55:58,648 - INFO - ✅ Connected to MongoDB at mongodb://localhost:27017/
-2025-06-01 13:55:58,648 - INFO - 📁 Using database: ecommerce_analytics
+2025-06-01 13:55:58,590 - INFO -  Starting complete MongoDB setup...
+2025-06-01 13:55:58,648 - INFO -  Connected to MongoDB at mongodb://localhost:27017/
+2025-06-01 13:55:58,648 - INFO -  Using database: ecommerce_analytics
 2025-06-01 13:55:58,648 - INFO - 🏗️  Creating collections with validation schemas...
-2025-06-01 13:55:58,837 - INFO - ✅ Created collection 'users' with schema validation
-2025-06-01 13:55:58,871 - INFO - ✅ Created collection 'products' with schema validation
-2025-06-01 13:55:58,913 - INFO - ✅ Created collection 'transactions' with schema validation
-2025-06-01 13:55:58,944 - INFO - ✅ Created collection 'categories' with schema validation
-2025-06-01 13:55:58,944 - INFO - 🚀 Creating performance indexes...
-2025-06-01 13:55:58,971 - INFO - ✅ Created index 'user_id_1' on users
-2025-06-01 13:55:59,005 - INFO - ✅ Created index 'email_1' on users
-2025-06-01 13:55:59,020 - INFO - ✅ Created index 'demographics.age_1' on users
-2025-06-01 13:55:59,049 - INFO - ✅ Created index 'demographics.income_bracket_1' on users
-2025-06-01 13:55:59,151 - INFO - ✅ Created index 'demographics.gender_1' on users
-2025-06-01 13:55:59,169 - INFO - ✅ Created index 'geo_data.country_1' on users
-2025-06-01 13:55:59,183 - INFO - ✅ Created index 'geo_data.state_1' on users
-2025-06-01 13:55:59,198 - INFO - ✅ Created index 'registration_date_-1' on users
-2025-06-01 13:55:59,213 - INFO - ✅ Created index 'last_active_-1' on users
-2025-06-01 13:55:59,229 - INFO - ✅ Created index 'account_status_1' on users
-2025-06-01 13:55:59,281 - INFO - ✅ Created index 'loyalty_tier_1' on users
-2025-06-01 13:55:59,332 - INFO - ✅ Created index 'lifetime_value_-1' on users
-2025-06-01 13:55:59,348 - INFO - ✅ Created index 'account_status_1_demographics.age_1' on users
-2025-06-01 13:55:59,363 - INFO - ✅ Created index 'geo_data.country_1_loyalty_tier_1' on users
-2025-06-01 13:55:59,378 - INFO - ✅ Created index 'registration_date_-1_account_status_1' on users
-2025-06-01 13:55:59,423 - INFO - ✅ Created index 'product_id_1' on products
-2025-06-01 13:55:59,439 - INFO - ✅ Created index 'sku_1' on products
-2025-06-01 13:55:59,455 - INFO - ✅ Created index 'category_id_1' on products
-2025-06-01 13:55:59,469 - INFO - ✅ Created index 'subcategory_id_1' on products
-2025-06-01 13:55:59,486 - INFO - ✅ Created index 'brand_1' on products
-2025-06-01 13:55:59,515 - INFO - ✅ Created index 'name_text' on products
-2025-06-01 13:55:59,530 - INFO - ✅ Created index 'base_price_1' on products
-2025-06-01 13:55:59,549 - INFO - ✅ Created index 'is_active_1' on products
-2025-06-01 13:55:59,569 - INFO - ✅ Created index 'current_stock_1' on products
-2025-06-01 13:55:59,588 - INFO - ✅ Created index 'rating_-1' on products
-2025-06-01 13:55:59,603 - INFO - ✅ Created index 'review_count_-1' on products
-2025-06-01 13:55:59,617 - INFO - ✅ Created index 'creation_date_-1' on products
-2025-06-01 13:55:59,632 - INFO - ✅ Created index 'category_id_1_is_active_1' on products
-2025-06-01 13:55:59,673 - INFO - ✅ Created index 'is_active_1_current_stock_1' on products
-2025-06-01 13:55:59,721 - INFO - ✅ Created index 'base_price_1_rating_-1' on products
-2025-06-01 13:55:59,736 - INFO - ✅ Created index 'brand_1_category_id_1' on products
-2025-06-01 13:55:59,763 - INFO - ✅ Created index 'transaction_id_1' on transactions
-2025-06-01 13:55:59,808 - INFO - ✅ Created index 'user_id_1' on transactions
-2025-06-01 13:55:59,822 - INFO - ✅ Created index 'timestamp_-1' on transactions
-2025-06-01 13:55:59,858 - INFO - ✅ Created index 'total_-1' on transactions
-2025-06-01 13:55:59,871 - INFO - ✅ Created index 'status_1' on transactions
-2025-06-01 13:55:59,886 - INFO - ✅ Created index 'payment_method_1' on transactions
-2025-06-01 13:55:59,910 - INFO - ✅ Created index 'items.product_id_1' on transactions
-2025-06-01 13:55:59,926 - INFO - ✅ Created index 'user_id_1_timestamp_-1' on transactions
-2025-06-01 13:55:59,939 - INFO - ✅ Created index 'timestamp_-1_status_1' on transactions
-2025-06-01 13:55:59,957 - INFO - ✅ Created index 'status_1_total_-1' on transactions
-2025-06-01 13:55:59,974 - INFO - ✅ Created index 'timestamp_-1_total_-1' on transactions
-2025-06-01 13:56:00,083 - INFO - ✅ Created index 'category_id_1' on categories
-2025-06-01 13:56:00,098 - INFO - ✅ Created index 'name_1' on categories
-2025-06-01 13:56:00,116 - INFO - ✅ Created index 'is_active_1' on categories
-2025-06-01 13:56:00,188 - INFO - ✅ Created index 'subcategories.subcategory_id_1' on categories
-2025-06-01 13:56:00,189 - INFO - 📊 Loading data with optimized batch operations...
+2025-06-01 13:55:58,837 - INFO -  Created collection 'users' with schema validation
+2025-06-01 13:55:58,871 - INFO -  Created collection 'products' with schema validation
+2025-06-01 13:55:58,913 - INFO -  Created collection 'transactions' with schema validation
+2025-06-01 13:55:58,944 - INFO -  Created collection 'categories' with schema validation
+2025-06-01 13:55:58,944 - INFO -  Creating performance indexes...
+2025-06-01 13:55:58,971 - INFO -  Created index 'user_id_1' on users
+2025-06-01 13:55:59,005 - INFO -  Created index 'email_1' on users
+2025-06-01 13:55:59,020 - INFO -  Created index 'demographics.age_1' on users
+2025-06-01 13:55:59,049 - INFO -  Created index 'demographics.income_bracket_1' on users
+2025-06-01 13:55:59,151 - INFO -  Created index 'demographics.gender_1' on users
+2025-06-01 13:55:59,169 - INFO -  Created index 'geo_data.country_1' on users
+2025-06-01 13:55:59,183 - INFO -  Created index 'geo_data.state_1' on users
+2025-06-01 13:55:59,198 - INFO -  Created index 'registration_date_-1' on users
+2025-06-01 13:55:59,213 - INFO -  Created index 'last_active_-1' on users
+2025-06-01 13:55:59,229 - INFO -  Created index 'account_status_1' on users
+2025-06-01 13:55:59,281 - INFO -  Created index 'loyalty_tier_1' on users
+2025-06-01 13:55:59,332 - INFO -  Created index 'lifetime_value_-1' on users
+2025-06-01 13:55:59,348 - INFO -  Created index 'account_status_1_demographics.age_1' on users
+2025-06-01 13:55:59,363 - INFO -  Created index 'geo_data.country_1_loyalty_tier_1' on users
+2025-06-01 13:55:59,378 - INFO -  Created index 'registration_date_-1_account_status_1' on users
+2025-06-01 13:55:59,423 - INFO -  Created index 'product_id_1' on products
+2025-06-01 13:55:59,439 - INFO -  Created index 'sku_1' on products
+2025-06-01 13:55:59,455 - INFO -  Created index 'category_id_1' on products
+2025-06-01 13:55:59,469 - INFO -  Created index 'subcategory_id_1' on products
+2025-06-01 13:55:59,486 - INFO -  Created index 'brand_1' on products
+2025-06-01 13:55:59,515 - INFO -  Created index 'name_text' on products
+2025-06-01 13:55:59,530 - INFO -  Created index 'base_price_1' on products
+2025-06-01 13:55:59,549 - INFO -  Created index 'is_active_1' on products
+2025-06-01 13:55:59,569 - INFO -  Created index 'current_stock_1' on products
+2025-06-01 13:55:59,588 - INFO -  Created index 'rating_-1' on products
+2025-06-01 13:55:59,603 - INFO -  Created index 'review_count_-1' on products
+2025-06-01 13:55:59,617 - INFO -  Created index 'creation_date_-1' on products
+2025-06-01 13:55:59,632 - INFO -  Created index 'category_id_1_is_active_1' on products
+2025-06-01 13:55:59,673 - INFO -  Created index 'is_active_1_current_stock_1' on products
+2025-06-01 13:55:59,721 - INFO -  Created index 'base_price_1_rating_-1' on products
+2025-06-01 13:55:59,736 - INFO -  Created index 'brand_1_category_id_1' on products
+2025-06-01 13:55:59,763 - INFO -  Created index 'transaction_id_1' on transactions
+2025-06-01 13:55:59,808 - INFO -  Created index 'user_id_1' on transactions
+2025-06-01 13:55:59,822 - INFO -  Created index 'timestamp_-1' on transactions
+2025-06-01 13:55:59,858 - INFO -  Created index 'total_-1' on transactions
+2025-06-01 13:55:59,871 - INFO -  Created index 'status_1' on transactions
+2025-06-01 13:55:59,886 - INFO -  Created index 'payment_method_1' on transactions
+2025-06-01 13:55:59,910 - INFO -  Created index 'items.product_id_1' on transactions
+2025-06-01 13:55:59,926 - INFO -  Created index 'user_id_1_timestamp_-1' on transactions
+2025-06-01 13:55:59,939 - INFO -  Created index 'timestamp_-1_status_1' on transactions
+2025-06-01 13:55:59,957 - INFO -  Created index 'status_1_total_-1' on transactions
+2025-06-01 13:55:59,974 - INFO -  Created index 'timestamp_-1_total_-1' on transactions
+2025-06-01 13:56:00,083 - INFO -  Created index 'category_id_1' on categories
+2025-06-01 13:56:00,098 - INFO -  Created index 'name_1' on categories
+2025-06-01 13:56:00,116 - INFO -  Created index 'is_active_1' on categories
+2025-06-01 13:56:00,188 - INFO -  Created index 'subcategories.subcategory_id_1' on categories
+2025-06-01 13:56:00,189 - INFO -  Loading data with optimized batch operations...
 2025-06-01 13:56:00,189 - INFO - Loading categories from data/raw/categories.json...
-2025-06-01 13:56:00,305 - INFO - ✅ Loaded 10 records into categories
+2025-06-01 13:56:00,305 - INFO -  Loaded 10 records into categories
 2025-06-01 13:56:00,306 - INFO - Loading products from data/raw/products.json...
 2025-06-01 13:56:01,148 - WARNING - Bulk write errors in products: 1
-2025-06-01 13:56:01,343 - INFO - ✅ Loaded 4,999 records into products
+2025-06-01 13:56:01,343 - INFO -  Loaded 4,999 records into products
 2025-06-01 13:56:01,353 - INFO - Loading users from data/raw/users.json...
 2025-06-01 13:56:01,779 - WARNING - Bulk write errors in users: 6
 2025-06-01 13:56:01,940 - WARNING - Bulk write errors in users: 9
@@ -70,53 +70,53 @@
 2025-06-01 13:56:03,093 - WARNING - Bulk write errors in users: 35
 2025-06-01 13:56:03,313 - WARNING - Bulk write errors in users: 22
 2025-06-01 13:56:03,579 - WARNING - Bulk write errors in users: 46
-2025-06-01 13:56:03,579 - INFO - ✅ Loaded 9,807 records into users
+2025-06-01 13:56:03,579 - INFO -  Loaded 9,807 records into users
 2025-06-01 13:56:03,591 - INFO - Loading transactions from data/raw/transactions.json...
-2025-06-01 13:56:10,353 - INFO - ✅ Loaded 50,000 records into transactions
+2025-06-01 13:56:10,353 - INFO -  Loaded 50,000 records into transactions
 2025-06-01 13:56:10,435 - INFO - Loading session files...
-2025-06-01 13:56:10,835 - INFO - ✅ Loaded sessions from sessions_000.json
-2025-06-01 13:56:11,164 - INFO - ✅ Loaded sessions from sessions_001.json
-2025-06-01 13:56:11,432 - INFO - ✅ Loaded sessions from sessions_002.json
-2025-06-01 13:56:11,748 - INFO - ✅ Loaded sessions from sessions_003.json
-2025-06-01 13:56:12,017 - INFO - ✅ Loaded sessions from sessions_004.json
-2025-06-01 13:56:12,317 - INFO - ✅ Loaded sessions from sessions_005.json
-2025-06-01 13:56:12,598 - INFO - ✅ Loaded sessions from sessions_006.json
-2025-06-01 13:56:12,919 - INFO - ✅ Loaded sessions from sessions_007.json
-2025-06-01 13:56:13,214 - INFO - ✅ Loaded sessions from sessions_008.json
-2025-06-01 13:56:13,547 - INFO - ✅ Loaded sessions from sessions_009.json
-2025-06-01 13:56:13,837 - INFO - ✅ Loaded sessions from sessions_010.json
-2025-06-01 13:56:14,200 - INFO - ✅ Loaded sessions from sessions_011.json
-2025-06-01 13:56:14,500 - INFO - ✅ Loaded sessions from sessions_012.json
-2025-06-01 13:56:14,816 - INFO - ✅ Loaded sessions from sessions_013.json
-2025-06-01 13:56:15,077 - INFO - ✅ Loaded sessions from sessions_014.json
-2025-06-01 13:56:15,358 - INFO - ✅ Loaded sessions from sessions_015.json
-2025-06-01 13:56:15,619 - INFO - ✅ Loaded sessions from sessions_016.json
-2025-06-01 13:56:15,884 - INFO - ✅ Loaded sessions from sessions_017.json
-2025-06-01 13:56:16,142 - INFO - ✅ Loaded sessions from sessions_018.json
-2025-06-01 13:56:16,452 - INFO - ✅ Loaded sessions from sessions_019.json
-2025-06-01 13:56:16,452 - INFO - ✅ Total sessions loaded: 200,000
-2025-06-01 13:56:19,147 - INFO - ✅ Created indexes for sessions collection
-2025-06-01 13:56:19,157 - INFO - 🔍 Verifying data integrity...
-2025-06-01 13:56:19,219 - INFO - 📊 users: 9,807 documents
-2025-06-01 13:56:19,221 - INFO - ✅ users sample document structure verified
-2025-06-01 13:56:19,226 - INFO - 📊 products: 4,999 documents
-2025-06-01 13:56:19,227 - INFO - ✅ products sample document structure verified
-2025-06-01 13:56:19,259 - INFO - 📊 transactions: 50,000 documents
-2025-06-01 13:56:19,259 - INFO - ✅ transactions sample document structure verified
-2025-06-01 13:56:19,260 - INFO - 📊 categories: 10 documents
-2025-06-01 13:56:19,261 - INFO - ✅ categories sample document structure verified
-2025-06-01 13:56:19,437 - INFO - 📊 sessions: 200,000 documents
-2025-06-01 13:56:19,440 - INFO - ✅ sessions sample document structure verified
+2025-06-01 13:56:10,835 - INFO -  Loaded sessions from sessions_000.json
+2025-06-01 13:56:11,164 - INFO -  Loaded sessions from sessions_001.json
+2025-06-01 13:56:11,432 - INFO -  Loaded sessions from sessions_002.json
+2025-06-01 13:56:11,748 - INFO -  Loaded sessions from sessions_003.json
+2025-06-01 13:56:12,017 - INFO -  Loaded sessions from sessions_004.json
+2025-06-01 13:56:12,317 - INFO -  Loaded sessions from sessions_005.json
+2025-06-01 13:56:12,598 - INFO -  Loaded sessions from sessions_006.json
+2025-06-01 13:56:12,919 - INFO -  Loaded sessions from sessions_007.json
+2025-06-01 13:56:13,214 - INFO -  Loaded sessions from sessions_008.json
+2025-06-01 13:56:13,547 - INFO -  Loaded sessions from sessions_009.json
+2025-06-01 13:56:13,837 - INFO -  Loaded sessions from sessions_010.json
+2025-06-01 13:56:14,200 - INFO -  Loaded sessions from sessions_011.json
+2025-06-01 13:56:14,500 - INFO -  Loaded sessions from sessions_012.json
+2025-06-01 13:56:14,816 - INFO -  Loaded sessions from sessions_013.json
+2025-06-01 13:56:15,077 - INFO -  Loaded sessions from sessions_014.json
+2025-06-01 13:56:15,358 - INFO -  Loaded sessions from sessions_015.json
+2025-06-01 13:56:15,619 - INFO -  Loaded sessions from sessions_016.json
+2025-06-01 13:56:15,884 - INFO -  Loaded sessions from sessions_017.json
+2025-06-01 13:56:16,142 - INFO -  Loaded sessions from sessions_018.json
+2025-06-01 13:56:16,452 - INFO -  Loaded sessions from sessions_019.json
+2025-06-01 13:56:16,452 - INFO -  Total sessions loaded: 200,000
+2025-06-01 13:56:19,147 - INFO -  Created indexes for sessions collection
+2025-06-01 13:56:19,157 - INFO - Verifying data integrity...
+2025-06-01 13:56:19,219 - INFO -  users: 9,807 documents
+2025-06-01 13:56:19,221 - INFO -  users sample document structure verified
+2025-06-01 13:56:19,226 - INFO -  products: 4,999 documents
+2025-06-01 13:56:19,227 - INFO -  products sample document structure verified
+2025-06-01 13:56:19,259 - INFO -  transactions: 50,000 documents
+2025-06-01 13:56:19,259 - INFO -  transactions sample document structure verified
+2025-06-01 13:56:19,260 - INFO -  categories: 10 documents
+2025-06-01 13:56:19,261 - INFO -  categories sample document structure verified
+2025-06-01 13:56:19,437 - INFO -  sessions: 200,000 documents
+2025-06-01 13:56:19,440 - INFO -  sessions sample document structure verified
 2025-06-01 13:56:19,440 - INFO - 🧪 Testing sample aggregation queries...
-2025-06-01 13:56:19,527 - INFO - ✅ User demographics aggregation: 4 groups
-2025-06-01 13:56:19,597 - INFO - ✅ Product performance aggregation: 10 categories
-2025-06-01 13:56:19,885 - INFO - ✅ Revenue aggregation: 4 months
+2025-06-01 13:56:19,527 - INFO -  User demographics aggregation: 4 groups
+2025-06-01 13:56:19,597 - INFO -  Product performance aggregation: 10 categories
+2025-06-01 13:56:19,885 - INFO -  Revenue aggregation: 4 months
 2025-06-01 13:56:19,885 - INFO - ============================================================
-2025-06-01 13:56:19,885 - INFO - 🎉 MONGODB SETUP COMPLETE!
+2025-06-01 13:56:19,885 - INFO -  MONGODB SETUP COMPLETE!
 2025-06-01 13:56:19,885 - INFO - ============================================================
-2025-06-01 13:56:19,885 - INFO - 📁 Database: ecommerce_analytics
-2025-06-01 13:56:19,885 - INFO - 🔗 Connection: mongodb://localhost:27017/
-2025-06-01 13:56:19,885 - INFO - 📊 Collections: users, products, transactions, categories, sessions
-2025-06-01 13:56:19,885 - INFO - 🚀 Indexes: Optimized for analytics queries
-2025-06-01 13:56:19,886 - INFO - ✅ Data: Loaded and verified
+2025-06-01 13:56:19,885 - INFO -  Database: ecommerce_analytics
+2025-06-01 13:56:19,885 - INFO -  Connection: mongodb://localhost:27017/
+2025-06-01 13:56:19,885 - INFO -  Collections: users, products, transactions, categories, sessions
+2025-06-01 13:56:19,885 - INFO -  Indexes: Optimized for analytics queries
+2025-06-01 13:56:19,886 - INFO -  Data: Loaded and verified
 2025-06-01 13:56:19,886 - INFO - ============================================================

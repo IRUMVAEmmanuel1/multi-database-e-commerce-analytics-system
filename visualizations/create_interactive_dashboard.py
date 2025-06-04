@@ -34,7 +34,7 @@ class InteractiveDashboard:
         with open("output/analytics_results.json", 'r') as f:
             self.results = json.load(f)
 
-        print("🌐 Creating professional interactive HTML dashboard...")
+        print("Creating professional interactive HTML dashboard...")
 
     def create_comprehensive_dashboard(self):
         insights = self.results['business_insights']
@@ -148,7 +148,7 @@ class InteractiveDashboard:
         # Layout Settings
         fig.update_layout(
             title={
-                'text': "📊 E-COMMERCE ANALYTICS DASHBOARD",
+                'text': " E-COMMERCE ANALYTICS DASHBOARD",
                 'x': 0.5, 'xanchor': 'center',
                 'font': dict(size=24, color='darkblue')
             },
@@ -161,7 +161,7 @@ class InteractiveDashboard:
         # Save to file
         dashboard_file = f"{self.output_dir}/interactive_dashboard.html"
         fig.write_html(dashboard_file)
-        print(f"✅ Professional interactive dashboard saved to: {dashboard_file}")
+        print(f" Professional interactive dashboard saved to: {dashboard_file}")
         return dashboard_file
 
 

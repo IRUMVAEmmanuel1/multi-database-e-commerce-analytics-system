@@ -62,13 +62,13 @@ class HBaseShellLoader:
                 result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
                 
                 if result.returncode == 0 and 'user_sessions' in result.stdout:
-                    logger.info("✅ HBase shell connection successful")
+                    logger.info(" HBase shell connection successful")
                     return True
                 elif result.returncode == 0:
-                    logger.info("✅ HBase shell working (tables accessible)")
+                    logger.info(" HBase shell working (tables accessible)")
                     return True
                 else:
-                    logger.error(f"❌ HBase shell test failed: {result.stderr}")
+                    logger.error(f" HBase shell test failed: {result.stderr}")
                     return False
                     
             finally:
@@ -76,7 +76,7 @@ class HBaseShellLoader:
                 os.unlink(temp_file)
                 
         except Exception as e:
-            logger.error(f"❌ HBase shell test error: {str(e)}")
+            logger.error(f" HBase shell test error: {str(e)}")
             return False
 
     def execute_hbase_command(self, command: str) -> bool:
@@ -110,12 +110,12 @@ class HBaseShellLoader:
                 os.unlink(temp_file)
                 
         except Exception as e:
-            logger.error(f"❌ Failed to execute HBase command: {str(e)}")
+            logger.error(f" Failed to execute HBase command: {str(e)}")
             return False
 
     def load_all_session_data(self):
         """Load ALL session data from all session files into HBase"""
-        logger.info("🚀 Starting complete session data loading into HBase...")
+        logger.info(" Starting complete session data loading into HBase...")
         
         # Find all session files
         session_files = []
@@ -125,18 +125,18 @@ class HBaseShellLoader:
                 session_files.append(file_path)
         
         if not session_files:
-            logger.error("❌ No session files found in data/raw")
+            logger.error(" No session files found in data/raw")
             return False
         
-        logger.info(f"📁 Found {len(session_files)} session files to load")
-        logger.info("📊 This will load ALL ~200,000 sessions - please be patient!")
+        logger.info(f" Found {len(session_files)} session files to load")
+        logger.info(" This will load ALL ~200,000 sessions - please be patient!")
         
         total_sessions_processed = 0
         total_commands_executed = 0
         
         for file_index, file_path in enumerate(session_files):
             try:
-                logger.info(f"📊 Loading {os.path.basename(file_path)} ({file_index + 1}/{len(session_files)})...")
+                logger.info(f" Loading {os.path.basename(file_path)} ({file_index + 1}/{len(session_files)})...")
                 
                 with open(file_path, 'r', encoding='utf-8') as f:
                     sessions_data = json.load(f)
@@ -170,7 +170,7 @@ class HBaseShellLoader:
                         
                         # Progress update every 1000 sessions
                         if (i + 1) % 1000 == 0:
-                            logger.info(f"  ✅ Processed {i + 1:,}/{len(sessions_data):,} sessions from {os.path.basename(file_path)}")
+                            logger.info(f"   Processed {i + 1:,}/{len(sessions_data):,} sessions from {os.path.basename(file_path)}")
                     
                     except Exception as e:
                         logger.warning(f"⚠️  Failed to process session {session.get('session_id', 'unknown')}: {str(e)}")
@@ -182,15 +182,15 @@ class HBaseShellLoader:
                     if success:
                         total_commands_executed += len(batch_commands)
                 
-                logger.info(f"✅ Completed loading {len(sessions_data):,} sessions from {os.path.basename(file_path)}")
+                logger.info(f" Completed loading {len(sessions_data):,} sessions from {os.path.basename(file_path)}")
                 
             except Exception as e:
-                logger.error(f"❌ Failed to load {file_path}: {str(e)}")
+                logger.error(f" Failed to load {file_path}: {str(e)}")
                 continue
         
         logger.info("=" * 60)
-        logger.info(f"🎉 COMPLETE SESSION DATA LOADING FINISHED!")
-        logger.info(f"📊 Total sessions processed: {total_sessions_processed:,}")
+        logger.info(f" COMPLETE SESSION DATA LOADING FINISHED!")
+        logger.info(f" Total sessions processed: {total_sessions_processed:,}")
         logger.info(f"⚡ Total HBase commands executed: {total_commands_executed:,}")
         logger.info("=" * 60)
         
@@ -230,7 +230,7 @@ class HBaseShellLoader:
                 os.unlink(temp_file)
                 
         except Exception as e:
-            logger.error(f"❌ Failed to execute batch commands: {str(e)}")
+            logger.error(f" Failed to execute batch commands: {str(e)}")
             return False
 
     def _convert_session_to_hbase_commands(self, session: Dict) -> tuple:
@@ -284,7 +284,7 @@ class HBaseShellLoader:
 
     def verify_data_loading(self) -> bool:
         """Verify data was loaded correctly"""
-        logger.info("🔍 Verifying HBase data loading...")
+        logger.info("Verifying HBase data loading...")
         
         try:
             # Create verification script
@@ -308,10 +308,10 @@ class HBaseShellLoader:
                 result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
                 
                 if result.returncode == 0 and "ROW" in result.stdout:
-                    logger.info("✅ Data verification successful - records found in HBase")
+                    logger.info(" Data verification successful - records found in HBase")
                     return True
                 elif result.returncode == 0:
-                    logger.info("✅ HBase accessible, checking for data...")
+                    logger.info(" HBase accessible, checking for data...")
                     return True
                 else:
                     logger.warning("⚠️  Verification had issues but HBase is accessible")
@@ -321,12 +321,12 @@ class HBaseShellLoader:
                 os.unlink(temp_file)
                 
         except Exception as e:
-            logger.error(f"❌ Verification failed: {str(e)}")
+            logger.error(f" Verification failed: {str(e)}")
             return False
 
     def create_product_metrics(self):
         """Create sample product metrics in product_views table"""
-        logger.info("📈 Creating sample product metrics...")
+        logger.info(" Creating sample product metrics...")
         
         try:
             # Create a few sample product metrics
@@ -351,14 +351,14 @@ class HBaseShellLoader:
                 for cmd in commands:
                     self.execute_hbase_command(cmd)
             
-            logger.info("✅ Sample product metrics created")
+            logger.info(" Sample product metrics created")
             
         except Exception as e:
-            logger.error(f"❌ Failed to create product metrics: {str(e)}")
+            logger.error(f" Failed to create product metrics: {str(e)}")
 
     def run_complete_loading(self):
         """Run complete data loading process using HBase shell"""
-        logger.info("🚀 Starting HBase shell data loading process...")
+        logger.info("Starting HBase shell data loading process...")
         
         try:
             # Test connection
@@ -377,32 +377,32 @@ class HBaseShellLoader:
                 return False
             
             logger.info("=" * 60)
-            logger.info("🎉 HBASE SHELL DATA LOADING COMPLETE!")
+            logger.info(" HBASE SHELL DATA LOADING COMPLETE!")
             logger.info("=" * 60)
-            logger.info("📊 Sample session data loaded into user_sessions table")
-            logger.info("📈 Product metrics loaded into product_views table")
-            logger.info("🔍 Data verified and accessible")
-            logger.info("🌐 Access HBase Master UI: http://localhost:16010")
+            logger.info(" Sample session data loaded into user_sessions table")
+            logger.info(" Product metrics loaded into product_views table")
+            logger.info("Data verified and accessible")
+            logger.info("Access HBase Master UI: http://localhost:16010")
             logger.info("=" * 60)
             
             return True
             
         except Exception as e:
-            logger.error(f"❌ Data loading failed: {str(e)}")
+            logger.error(f" Data loading failed: {str(e)}")
             return False
 
 
 if __name__ == "__main__":
-    print("🗄️  HBASE SHELL DATA LOADER")
+    print("  HBASE SHELL DATA LOADER")
     print("=" * 50)
     
     loader = HBaseShellLoader()
     success = loader.run_complete_loading()
     
     if success:
-        print("\n✅ HBase data loading completed successfully!")
-        print("🔗 Access HBase Master UI: http://localhost:16010")
-        print("📊 Session data ready for analytics!")
+        print("\n HBase data loading completed successfully!")
+        print(" Access HBase Master UI: http://localhost:16010")
+        print(" Session data ready for analytics!")
     else:
-        print("\n❌ HBase data loading failed. Check logs for details.")
+        print("\n HBase data loading failed. Check logs for details.")
         sys.exit(1)

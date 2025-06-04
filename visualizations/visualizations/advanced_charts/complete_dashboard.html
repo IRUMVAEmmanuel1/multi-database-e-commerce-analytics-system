@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced E-commerce Analytics Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        .dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            font-weight: 700;
+        }
+        .header p {
+            margin: 10px 0 0;
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+        .kpi-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid;
+        }
+        .kpi-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+        .kpi-value {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        .kpi-label {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .kpi-growth {
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1em;
+            padding: 5px 10px;
+            background: rgba(40, 167, 69, 0.1);
+            border-radius: 20px;
+            display: inline-block;
+        }
+        .revenue { color: #28a745; border-color: #28a745; }
+        .customers { color: #007bff; border-color: #007bff; }
+        .conversion { color: #ffc107; border-color: #ffc107; }
+        .order-value { color: #17a2b8; border-color: #17a2b8; }
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+            gap: 30px;
+            padding: 30px;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            height: 500px;
+        }
+        .chart-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #1e3c72;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #2a5298;
+            padding-bottom: 10px;
+        }
+        .navigation {
+            background: #1e3c72;
+            padding: 15px 30px;
+            text-align: center;
+        }
+        .nav-button {
+            background: #2a5298;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 0 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        .nav-button:hover {
+            background: #667eea;
+        }
+        .footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+        .insights {
+            background: linear-gradient(135deg, #e8f4fd 0%, #f1f8ff 100%);
+            border-left: 5px solid #007bff;
+            padding: 25px;
+            margin: 25px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1>🚀 ADVANCED E-COMMERCE ANALYTICS</h1>
+            <p>Multi-Database Architecture: MongoDB + HBase + Apache Spark</p>
+            <p>Professional Interactive Dashboard | Generated: June 04, 2025 at 11:56</p>
+        </div>
+
+        <div class="kpi-grid">
+            <div class="kpi-card revenue">
+                <div class="kpi-label">💰 Total Revenue</div>
+                <div class="kpi-value">$36.7M</div>
+                <div class="kpi-growth">↗ +15.2% vs last period</div>
+            </div>
+            <div class="kpi-card customers">
+                <div class="kpi-label">👥 Active Customers</div>
+                <div class="kpi-value">8,342</div>
+                <div class="kpi-growth">↗ +8.7% growth</div>
+            </div>
+            <div class="kpi-card conversion">
+                <div class="kpi-label">📈 Conversion Rate</div>
+                <div class="kpi-value">3.0%</div>
+                <div class="kpi-growth">↗ +2.3% improvement</div>
+            </div>
+            <div class="kpi-card order-value">
+                <div class="kpi-label">🛒 Avg Order Value</div>
+                <div class="kpi-value">$1,050</div>
+                <div class="kpi-growth">↗ +12.1% increase</div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-button" onclick="openChart('revenue_customer_metrics.html')">📊 Revenue & Customers</button>
+            <button class="nav-button" onclick="openChart('geographical_distribution.html')">🌍 Geographic Analysis</button>
+            <button class="nav-button" onclick="openChart('product_performance.html')">📦 Product Performance</button>
+            <button class="nav-button" onclick="openChart('conversion_funnel.html')">🔄 Conversion Funnel</button>
+            <button class="nav-button" onclick="openChart('customer_segmentation.html')">👥 Customer Segments</button>
+            <button class="nav-button" onclick="openChart('kpi_dashboard.html')">📈 KPI Dashboard</button>
+            <button class="nav-button" onclick="openChart('revenue_performance.html')">💹 Revenue Analysis</button>
+        </div>
+
+        <div class="insights">
+            <h2 style="color: #1e3c72; margin-top: 0;">🎯 Key Business Insights</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div>
+                    <h3>📊 Performance Highlights</h3>
+                    <ul>
+                        <li><strong>Revenue Excellence:</strong> $36.7M total revenue demonstrates strong market position</li>
+                        <li><strong>Customer Growth:</strong> 8,342 active customers with healthy engagement</li>
+                        <li><strong>Conversion Success:</strong> 3.0% conversion rate shows effective optimization</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>🏗️ Technical Architecture</h3>
+                    <ul>
+                        <li><strong>MongoDB:</strong> 8,342+ user profiles and 4,603+ products</li>
+                        <li><strong>HBase:</strong> 10,000+ user sessions for behavioral analytics</li>
+                        <li><strong>Spark:</strong> Real-time processing and machine learning capabilities</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>AUCA Big Data Analytics Final Project</strong></p>
+            <p>Professional Multi-Database E-commerce System | MongoDB + HBase + Apache Spark</p>
+            <p>Demonstrating Real-World Big Data Architecture and Analytics</p>
+        </div>
+    </div>
+
+    <script>
+        function openChart(filename) {
+            window.open('advanced_charts/' + filename, '_blank', 'width=1200,height=800');
+        }
+        
+        // Add smooth scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.kpi-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>

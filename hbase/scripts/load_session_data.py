@@ -50,11 +50,11 @@ class HBaseSessionLoader:
             
             # Test connection by listing tables
             tables = self.connection.tables()
-            logger.info(f"✅ Connected to HBase. Available tables: {[t.decode() for t in tables]}")
+            logger.info(f" Connected to HBase. Available tables: {[t.decode() for t in tables]}")
             return True
             
         except Exception as e:
-            logger.error(f"❌ Failed to connect to HBase: {str(e)}")
+            logger.error(f" Failed to connect to HBase: {str(e)}")
             logger.info("💡 Make sure HBase Thrift server is running on localhost:9090")
             return False
 
@@ -71,19 +71,19 @@ class HBaseSessionLoader:
                     missing_tables.append(table.decode())
             
             if missing_tables:
-                logger.error(f"❌ Missing tables: {missing_tables}")
+                logger.error(f" Missing tables: {missing_tables}")
                 return False
             
-            logger.info("✅ All required HBase tables exist")
+            logger.info(" All required HBase tables exist")
             return True
             
         except Exception as e:
-            logger.error(f"❌ Error verifying tables: {str(e)}")
+            logger.error(f" Error verifying tables: {str(e)}")
             return False
 
     def load_session_files(self, data_dir="data/raw"):
         """Load all session files into HBase"""
-        logger.info("🚀 Starting session data loading into HBase...")
+        logger.info(" Starting session data loading into HBase...")
         
         # Find all session files
         session_files = []
@@ -93,10 +93,10 @@ class HBaseSessionLoader:
                 session_files.append(file_path)
         
         if not session_files:
-            logger.error(f"❌ No session files found in {data_dir}")
+            logger.error(f" No session files found in {data_dir}")
             return False
         
-        logger.info(f"📁 Found {len(session_files)} session files to load")
+        logger.info(f" Found {len(session_files)} session files to load")
         
         total_sessions_loaded = 0
         
@@ -105,7 +105,7 @@ class HBaseSessionLoader:
         
         for file_path in session_files:
             try:
-                logger.info(f"📊 Loading {os.path.basename(file_path)}...")
+                logger.info(f" Loading {os.path.basename(file_path)}...")
                 
                 with open(file_path, 'r', encoding='utf-8') as f:
                     sessions_data = json.load(f)
@@ -133,13 +133,13 @@ class HBaseSessionLoader:
                     self._write_batch_to_hbase(sessions_table, batch_data)
                     total_sessions_loaded += len(batch_data)
                 
-                logger.info(f"✅ Loaded {len(sessions_data):,} sessions from {os.path.basename(file_path)}")
+                logger.info(f" Loaded {len(sessions_data):,} sessions from {os.path.basename(file_path)}")
                 
             except Exception as e:
-                logger.error(f"❌ Failed to load {file_path}: {str(e)}")
+                logger.error(f" Failed to load {file_path}: {str(e)}")
                 continue
         
-        logger.info(f"🎉 Total sessions loaded into HBase: {total_sessions_loaded:,}")
+        logger.info(f" Total sessions loaded into HBase: {total_sessions_loaded:,}")
         return total_sessions_loaded > 0
 
     def _convert_session_to_hbase_format(self, session: Dict) -> tuple:
@@ -234,12 +234,12 @@ class HBaseSessionLoader:
             batch.send()
             
         except Exception as e:
-            logger.error(f"❌ Failed to write batch to HBase: {str(e)}")
+            logger.error(f" Failed to write batch to HBase: {str(e)}")
             raise
 
     def load_product_interaction_data(self):
         """Load product interaction data from sessions into product_views table"""
-        logger.info("📊 Loading product interaction data...")
+        logger.info(" Loading product interaction data...")
         
         try:
             # Read session data and extract product interactions
@@ -287,14 +287,14 @@ class HBaseSessionLoader:
                 batch.put(row_key.encode('utf-8'), row_data)
             
             batch.send()
-            logger.info(f"✅ Loaded product interaction data for {len(interactions)} products")
+            logger.info(f" Loaded product interaction data for {len(interactions)} products")
             
         except Exception as e:
-            logger.error(f"❌ Failed to load product interaction data: {str(e)}")
+            logger.error(f" Failed to load product interaction data: {str(e)}")
 
     def verify_data_loading(self):
         """Verify data was loaded correctly"""
-        logger.info("🔍 Verifying HBase data loading...")
+        logger.info("Verifying HBase data loading...")
         
         try:
             # Check user_sessions table
@@ -305,7 +305,7 @@ class HBaseSessionLoader:
             for key, data in sessions_table.scan(limit=100):
                 session_count += 1
             
-            logger.info(f"📊 Verified: {session_count} session records accessible")
+            logger.info(f" Verified: {session_count} session records accessible")
             
             # Check product_views table
             product_table = self.connection.table('product_views')
@@ -314,17 +314,17 @@ class HBaseSessionLoader:
             for key, data in product_table.scan(limit=10):
                 product_count += 1
             
-            logger.info(f"📈 Verified: {product_count} product interaction records")
+            logger.info(f" Verified: {product_count} product interaction records")
             
             return session_count > 0
             
         except Exception as e:
-            logger.error(f"❌ Verification failed: {str(e)}")
+            logger.error(f" Verification failed: {str(e)}")
             return False
 
     def run_complete_loading(self):
         """Run complete data loading process"""
-        logger.info("🚀 Starting complete HBase data loading process...")
+        logger.info(" Starting complete HBase data loading process...")
         
         try:
             # Connect to HBase
@@ -347,18 +347,18 @@ class HBaseSessionLoader:
                 return False
             
             logger.info("=" * 60)
-            logger.info("🎉 HBASE DATA LOADING COMPLETE!")
+            logger.info(" HBASE DATA LOADING COMPLETE!")
             logger.info("=" * 60)
-            logger.info("📊 Session data loaded into user_sessions table")
-            logger.info("📈 Product interactions loaded into product_views table")
-            logger.info("🔍 Data verified and accessible")
-            logger.info("🌐 Access HBase Master UI: http://localhost:16010")
+            logger.info(" Session data loaded into user_sessions table")
+            logger.info(" Product interactions loaded into product_views table")
+            logger.info("Data verified and accessible")
+            logger.info("Access HBase Master UI: http://localhost:16010")
             logger.info("=" * 60)
             
             return True
             
         except Exception as e:
-            logger.error(f"❌ Data loading failed: {str(e)}")
+            logger.error(f" Data loading failed: {str(e)}")
             return False
         
         finally:
@@ -368,16 +368,16 @@ class HBaseSessionLoader:
 
 
 if __name__ == "__main__":
-    print("🗄️  HBASE SESSION DATA LOADER")
+    print("  HBASE SESSION DATA LOADER")
     print("=" * 50)
     
     loader = HBaseSessionLoader()
     success = loader.run_complete_loading()
     
     if success:
-        print("\n✅ HBase data loading completed successfully!")
-        print("🔗 Access HBase Master UI: http://localhost:16010")
-        print("📊 Session data ready for time-series analytics!")
+        print("\n HBase data loading completed successfully!")
+        print(" Access HBase Master UI: http://localhost:16010")
+        print(" Session data ready for time-series analytics!")
     else:
-        print("\n❌ HBase data loading failed. Check logs for details.")
+        print("\n HBase data loading failed. Check logs for details.")
         sys.exit(1)

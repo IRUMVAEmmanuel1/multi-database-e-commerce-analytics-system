@@ -127,7 +127,7 @@ class ProfessionalDashboard:
         plt.tight_layout()
         plt.savefig(f'{self.output_dir}/01_kpi_cards.png', dpi=300, bbox_inches='tight')
         plt.close()
-        print("✅ KPI Cards section created")
+        print(" KPI Cards section created")
 
     def create_revenue_analysis(self):
         """Create revenue analysis section"""
@@ -204,7 +204,7 @@ class ProfessionalDashboard:
         plt.tight_layout()
         plt.savefig(f'{self.output_dir}/02_revenue_analysis.png', dpi=300, bbox_inches='tight')
         plt.close()
-        print("✅ Revenue Analysis section created")
+        print(" Revenue Analysis section created")
 
     def create_customer_insights(self):
         """Create customer insights section"""
@@ -292,7 +292,7 @@ class ProfessionalDashboard:
         plt.tight_layout()
         plt.savefig(f'{self.output_dir}/03_customer_insights.png', dpi=300, bbox_inches='tight')
         plt.close()
-        print("✅ Customer Insights section created")
+        print(" Customer Insights section created")
 
     def create_product_performance(self):
         """Create product performance section"""
@@ -384,7 +384,7 @@ class ProfessionalDashboard:
         plt.tight_layout()
         plt.savefig(f'{self.output_dir}/04_product_performance.png', dpi=300, bbox_inches='tight')
         plt.close()
-        print("✅ Product Performance section created")
+        print(" Product Performance section created")
 
     def create_operational_metrics(self):
         """Create operational metrics section"""
@@ -468,7 +468,7 @@ class ProfessionalDashboard:
         plt.tight_layout()
         plt.savefig(f'{self.output_dir}/05_operational_metrics.png', dpi=300, bbox_inches='tight')
         plt.close()
-        print("✅ Operational Metrics section created")
+        print(" Operational Metrics section created")
 
     def create_executive_summary_dashboard(self):
         """Create comprehensive executive summary"""
@@ -567,7 +567,7 @@ class ProfessionalDashboard:
         plt.tight_layout()
         plt.savefig(f'{self.output_dir}/06_executive_summary.png', dpi=300, bbox_inches='tight')
         plt.close()
-        print("✅ Executive Summary Dashboard created")
+        print(" Executive Summary Dashboard created")
 
     def create_interactive_html_dashboard(self):
         """Create interactive HTML dashboard"""
@@ -735,7 +735,7 @@ class ProfessionalDashboard:
         
         <div class="content">
             <div class="section">
-                <h2>📊 Business Intelligence Insights</h2>
+                <h2> Business Intelligence Insights</h2>
                 <div class="insights">
                     <h3>Key Findings:</h3>
                     <ul>
@@ -784,7 +784,7 @@ class ProfessionalDashboard:
             </div>
             
             <div class="section">
-                <h2>📈 Performance Metrics</h2>
+                <h2> Performance Metrics</h2>
                 <div class="insights">
                     <h3>System Performance:</h3>
                     <ul>
@@ -809,7 +809,7 @@ class ProfessionalDashboard:
         with open(f'{self.output_dir}/interactive_dashboard.html', 'w') as f:
             f.write(html_content)
         
-        print("✅ Interactive HTML Dashboard created")
+        print(" Interactive HTML Dashboard created")
 
     def generate_complete_dashboard(self):
         """Generate all dashboard sections"""
@@ -827,10 +827,10 @@ class ProfessionalDashboard:
             self.create_interactive_html_dashboard()
             
             print("\n" + "="*80)
-            print("🎉 PROFESSIONAL DASHBOARD COMPLETE!")
+            print(" PROFESSIONAL DASHBOARD COMPLETE!")
             print("="*80)
-            print(f"📁 Dashboard files saved to: {self.output_dir}/")
-            print("\n📊 Dashboard Sections Created:")
+            print(f" Dashboard files saved to: {self.output_dir}/")
+            print("\n Dashboard Sections Created:")
             print("  • 01_kpi_cards.png - Executive KPI Overview")
             print("  • 02_revenue_analysis.png - Revenue Analytics")
             print("  • 03_customer_insights.png - Customer Intelligence")
@@ -846,11 +846,11 @@ class ProfessionalDashboard:
             print("  • Interactive HTML dashboard")
             print("  • Executive-ready visualizations")
             print("="*80)
-            print("🔗 Open interactive_dashboard.html in your browser!")
+            print(" Open interactive_dashboard.html in your browser!")
             print("="*80)
             
         except Exception as e:
-            print(f"❌ Dashboard generation failed: {str(e)}")
+            print(f" Dashboard generation failed: {str(e)}")
             import traceback
             traceback.print_exc()
 

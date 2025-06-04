@@ -339,7 +339,7 @@ class EcommerceDataGenerator:
             filepath = os.path.join("data/raw", filename)
             with open(filepath, "w", encoding="utf-8") as f:
                 json.dump(data, f, default=json_serializer, indent=2, ensure_ascii=False)
-            logger.info(f"✅ Saved {len(data):,} records to {filepath}")
+            logger.info(f" Saved {len(data):,} records to {filepath}")
         
         # Save sessions in chunks for better memory management
         chunk_size = self.config['CHUNK_SIZE']
@@ -349,7 +349,7 @@ class EcommerceDataGenerator:
             filepath = os.path.join("data/raw", filename)
             with open(filepath, "w", encoding="utf-8") as f:
                 json.dump(chunk, f, default=json_serializer, indent=2, ensure_ascii=False)
-            logger.info(f"✅ Saved {len(chunk):,} sessions to {filepath}")
+            logger.info(f" Saved {len(chunk):,} sessions to {filepath}")
         
         # Generate comprehensive summary
         self._generate_summary()
@@ -401,18 +401,18 @@ class EcommerceDataGenerator:
         
         # Log key metrics
         logger.info("=" * 60)
-        logger.info("📊 DATASET GENERATION COMPLETE!")
+        logger.info(" DATASET GENERATION COMPLETE!")
         logger.info("=" * 60)
-        logger.info(f"📁 Total Records: {summary['data_volumes']['total_records']:,}")
+        logger.info(f" Total Records: {summary['data_volumes']['total_records']:,}")
         logger.info(f"💰 Total Revenue: ${summary['business_metrics']['total_revenue']:,.2f}")
         logger.info(f"🛒 Avg Transaction: ${summary['business_metrics']['average_transaction_value']:.2f}")
-        logger.info(f"📈 Conversion Rate: {summary['business_metrics']['conversion_rate']:.2f}%")
+        logger.info(f" Conversion Rate: {summary['business_metrics']['conversion_rate']:.2f}%")
         logger.info(f"⭐ Avg Rating: {summary['business_metrics']['average_product_rating']:.1f}/5.0")
         logger.info("=" * 60)
 
     def generate_all(self):
         """Generate complete realistic e-commerce dataset"""
-        logger.info("🚀 Starting comprehensive e-commerce dataset generation...")
+        logger.info(" Starting comprehensive e-commerce dataset generation...")
         
         try:
             # Generate core data
@@ -428,11 +428,11 @@ class EcommerceDataGenerator:
             # Save everything
             self.save_data()
             
-            logger.info("✅ Dataset generation completed successfully!")
+            logger.info(" Dataset generation completed successfully!")
             return True
             
         except Exception as e:
-            logger.error(f"❌ Dataset generation failed: {str(e)}")
+            logger.error(f" Dataset generation failed: {str(e)}")
             raise
 
     def _generate_simple_transactions(self):
@@ -588,8 +588,8 @@ if __name__ == "__main__":
     success = generator.generate_all()
     
     if success:
-        print("\n✅ Dataset generation completed successfully!")
-        print("📁 Check the data/raw/ directory for generated files")
-        print("📊 Review data/raw/dataset_summary.json for statistics")
+        print("\n Dataset generation completed successfully!")
+        print(" Check the data/raw/ directory for generated files")
+        print(" Review data/raw/dataset_summary.json for statistics")
     else:
-        print("\n❌ Dataset generation failed. Check logs for details.")
+        print("\n Dataset generation failed. Check logs for details.")

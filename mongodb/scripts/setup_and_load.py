@@ -47,11 +47,11 @@ class MongoDBSetup:
             # Test connection
             self.client.server_info()
             self.db = self.client[self.db_name]
-            logger.info(f"✅ Connected to MongoDB at {self.connection_string}")
-            logger.info(f"📁 Using database: {self.db_name}")
+            logger.info(f" Connected to MongoDB at {self.connection_string}")
+            logger.info(f" Using database: {self.db_name}")
             return True
         except Exception as e:
-            logger.error(f"❌ Failed to connect to MongoDB: {str(e)}")
+            logger.error(f" Failed to connect to MongoDB: {str(e)}")
             return False
 
     def create_collections_with_schemas(self):
@@ -220,14 +220,14 @@ class MongoDBSetup:
                     validationLevel="moderate",  # Allow some flexibility during development
                     validationAction="warn"       # Log validation errors but allow inserts
                 )
-                logger.info(f"✅ Created collection '{collection_name}' with schema validation")
+                logger.info(f" Created collection '{collection_name}' with schema validation")
                 
             except Exception as e:
-                logger.error(f"❌ Failed to create collection '{collection_name}': {str(e)}")
+                logger.error(f" Failed to create collection '{collection_name}': {str(e)}")
 
     def create_indexes(self):
         """Create performance-optimized indexes for analytics queries"""
-        logger.info("🚀 Creating performance indexes...")
+        logger.info(" Creating performance indexes...")
         
         index_configs = {
             "users": [
@@ -340,14 +340,14 @@ class MongoDBSetup:
                         name=index_name[:63]  # MongoDB index name limit
                     )
                     
-                    logger.info(f"✅ Created index '{result}' on {collection_name}")
+                    logger.info(f" Created index '{result}' on {collection_name}")
                     
                 except Exception as e:
                     logger.warning(f"⚠️  Index creation warning for {collection_name}: {str(e)}")
 
     def load_data_optimized(self):
         """Load data with optimized batch operations"""
-        logger.info("📊 Loading data with optimized batch operations...")
+        logger.info(" Loading data with optimized batch operations...")
         
         # Data files mapping
         data_files = {
@@ -362,7 +362,7 @@ class MongoDBSetup:
             if os.path.exists(file_path):
                 self._load_json_file(collection_name, file_path)
             else:
-                logger.error(f"❌ File not found: {file_path}")
+                logger.error(f" File not found: {file_path}")
         
         # Load sessions (multiple files)
         self._load_sessions_files()
@@ -403,10 +403,10 @@ class MongoDBSetup:
                         logger.warning(f"Bulk write errors in {collection_name}: {len(e.details.get('writeErrors', []))}")
                         pbar.update(len(batch))
             
-            logger.info(f"✅ Loaded {total_inserted:,} records into {collection_name}")
+            logger.info(f" Loaded {total_inserted:,} records into {collection_name}")
             
         except Exception as e:
-            logger.error(f"❌ Failed to load {collection_name}: {str(e)}")
+            logger.error(f" Failed to load {collection_name}: {str(e)}")
 
     def _load_sessions_files(self):
         """Load session files (multiple files)"""
@@ -444,12 +444,12 @@ class MongoDBSetup:
                     except Exception as e:
                         logger.warning(f"Session batch insert error: {str(e)}")
                 
-                logger.info(f"✅ Loaded sessions from {os.path.basename(file_path)}")
+                logger.info(f" Loaded sessions from {os.path.basename(file_path)}")
                 
             except Exception as e:
-                logger.error(f"❌ Failed to load {file_path}: {str(e)}")
+                logger.error(f" Failed to load {file_path}: {str(e)}")
         
-        logger.info(f"✅ Total sessions loaded: {total_sessions:,}")
+        logger.info(f" Total sessions loaded: {total_sessions:,}")
         
         # Create indexes for sessions
         try:
@@ -457,7 +457,7 @@ class MongoDBSetup:
             sessions_collection.create_index([("user_id", ASCENDING)])
             sessions_collection.create_index([("start_time", DESCENDING)])
             sessions_collection.create_index([("conversion_status", ASCENDING)])
-            logger.info("✅ Created indexes for sessions collection")
+            logger.info(" Created indexes for sessions collection")
         except Exception as e:
             logger.warning(f"Session index creation warning: {str(e)}")
 
@@ -504,7 +504,7 @@ class MongoDBSetup:
 
     def verify_data_integrity(self):
         """Verify data loading and run integrity checks"""
-        logger.info("🔍 Verifying data integrity...")
+        logger.info("Verifying data integrity...")
         
         collections = ["users", "products", "transactions", "categories", "sessions"]
         
@@ -512,17 +512,17 @@ class MongoDBSetup:
             try:
                 collection = self.db[collection_name]
                 count = collection.count_documents({})
-                logger.info(f"📊 {collection_name}: {count:,} documents")
+                logger.info(f" {collection_name}: {count:,} documents")
                 
                 # Sample document check
                 sample = collection.find_one()
                 if sample:
-                    logger.info(f"✅ {collection_name} sample document structure verified")
+                    logger.info(f" {collection_name} sample document structure verified")
                 else:
                     logger.warning(f"⚠️  {collection_name} is empty")
                     
             except Exception as e:
-                logger.error(f"❌ Error checking {collection_name}: {str(e)}")
+                logger.error(f" Error checking {collection_name}: {str(e)}")
 
     def create_sample_aggregations(self):
         """Create and test sample aggregation queries"""
@@ -538,7 +538,7 @@ class MongoDBSetup:
                 }},
                 {"$sort": {"count": -1}}
             ]))
-            logger.info(f"✅ User demographics aggregation: {len(user_demographics)} groups")
+            logger.info(f" User demographics aggregation: {len(user_demographics)} groups")
             
             # 2. Product performance by category
             product_performance = list(self.db.products.aggregate([
@@ -551,7 +551,7 @@ class MongoDBSetup:
                 }},
                 {"$sort": {"avg_price": -1}}
             ]))
-            logger.info(f"✅ Product performance aggregation: {len(product_performance)} categories")
+            logger.info(f" Product performance aggregation: {len(product_performance)} categories")
             
             # 3. Revenue by month
             revenue_by_month = list(self.db.transactions.aggregate([
@@ -566,14 +566,14 @@ class MongoDBSetup:
                 }},
                 {"$sort": {"_id.year": 1, "_id.month": 1}}
             ]))
-            logger.info(f"✅ Revenue aggregation: {len(revenue_by_month)} months")
+            logger.info(f" Revenue aggregation: {len(revenue_by_month)} months")
             
         except Exception as e:
-            logger.error(f"❌ Aggregation test failed: {str(e)}")
+            logger.error(f" Aggregation test failed: {str(e)}")
 
     def run_complete_setup(self):
         """Run the complete MongoDB setup process"""
-        logger.info("🚀 Starting complete MongoDB setup...")
+        logger.info(" Starting complete MongoDB setup...")
         
         if not self.connect():
             return False
@@ -587,19 +587,19 @@ class MongoDBSetup:
             self.create_sample_aggregations()
             
             logger.info("=" * 60)
-            logger.info("🎉 MONGODB SETUP COMPLETE!")
+            logger.info(" MONGODB SETUP COMPLETE!")
             logger.info("=" * 60)
-            logger.info(f"📁 Database: {self.db_name}")
-            logger.info(f"🔗 Connection: {self.connection_string}")
-            logger.info("📊 Collections: users, products, transactions, categories, sessions")
-            logger.info("🚀 Indexes: Optimized for analytics queries")
-            logger.info("✅ Data: Loaded and verified")
+            logger.info(f" Database: {self.db_name}")
+            logger.info(f" Connection: {self.connection_string}")
+            logger.info(" Collections: users, products, transactions, categories, sessions")
+            logger.info(" Indexes: Optimized for analytics queries")
+            logger.info(" Data: Loaded and verified")
             logger.info("=" * 60)
             
             return True
             
         except Exception as e:
-            logger.error(f"❌ Setup failed: {str(e)}")
+            logger.error(f" Setup failed: {str(e)}")
             return False
         
         finally:
@@ -615,9 +615,9 @@ if __name__ == "__main__":
     success = setup.run_complete_setup()
     
     if success:
-        print("\n✅ MongoDB setup completed successfully!")
-        print("🔗 Connect with: mongosh ecommerce_analytics")
-        print("📊 Ready for analytics queries!")
+        print("\n MongoDB setup completed successfully!")
+        print(" Connect with: mongosh ecommerce_analytics")
+        print(" Ready for analytics queries!")
     else:
-        print("\n❌ MongoDB setup failed. Check logs for details.")
+        print("\n MongoDB setup failed. Check logs for details.")
         sys.exit(1)

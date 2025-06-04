@@ -26,7 +26,7 @@ class VisualizationGenerator:
         with open("output/analytics_results.json", 'r') as f:
             self.results = json.load(f)
         
-        print("📊 Creating professional visualizations...")
+        print(" Creating professional visualizations...")
 
     def create_business_dashboard(self):
         """Create executive business dashboard"""
@@ -74,7 +74,7 @@ class VisualizationGenerator:
         plt.tight_layout()
         plt.savefig(f'{self.output_dir}/business_dashboard.png', dpi=300, bbox_inches='tight')
         plt.close()
-        print("✅ Business dashboard created")
+        print(" Business dashboard created")
 
     def create_customer_segments_chart(self):
         """Create customer segmentation chart"""
@@ -104,7 +104,7 @@ class VisualizationGenerator:
         plt.tight_layout()
         plt.savefig(f'{self.output_dir}/customer_segments.png', dpi=300, bbox_inches='tight')
         plt.close()
-        print("✅ Customer segmentation chart created")
+        print(" Customer segmentation chart created")
 
     def create_executive_summary(self):
         """Create executive summary infographic"""
@@ -165,7 +165,7 @@ class VisualizationGenerator:
         
         plt.savefig(f'{self.output_dir}/executive_summary.png', dpi=300, bbox_inches='tight')
         plt.close()
-        print("✅ Executive summary created")
+        print(" Executive summary created")
 
     def generate_all_charts(self):
         """Generate all visualizations"""
@@ -176,10 +176,10 @@ class VisualizationGenerator:
         self.create_executive_summary()
         
         print("\n" + "="*60)
-        print("🎉 ALL VISUALIZATIONS COMPLETED!")
+        print(" ALL VISUALIZATIONS COMPLETED!")
         print("="*60)
-        print(f"📁 Charts saved to: {self.output_dir}/")
-        print("📊 Created visualizations:")
+        print(f" Charts saved to: {self.output_dir}/")
+        print(" Created visualizations:")
         print("  • business_dashboard.png")
         print("  • customer_segments.png")
         print("  • executive_summary.png")
