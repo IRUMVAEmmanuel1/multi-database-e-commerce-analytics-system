@@ -141,8 +141,7 @@ This project implements a sophisticated multi-database analytics system that pro
 ### 1. Repository Setup
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/multi-database-e-commerce-analytics-system.git
-cd multi-database-e-commerce-analytics-system
+git clone https://github.com/IRUMVAEmmanuel1/multi-database-e-commerce-analytics-system.git
 
 # Create virtual environment
 python3 -m venv venv
