@@ -1,4 +1,4 @@
-# Multi-Database E-Commerce Analytics System
+# Distributed Multi-Model Analytics for E-commerce Data
 
 A comprehensive, enterprise-grade analytics platform demonstrating the strategic application of polyglot persistence architecture for big data analytics in e-commerce environments.
 
